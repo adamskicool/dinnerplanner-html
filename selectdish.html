@@ -12,7 +12,7 @@
   </head>
   <body>
 	<div class="title">
-		<h1>Dinner planner</h1>
+		<h1 id="title-text">Dinner planner</h1>
 	</div>
   <div class="select-dish-grid">
     <div class="my-dinner">
@@ -20,7 +20,7 @@
       <button class="button" id="collapse-button"></button>
       <div id="people-select">
         people
-        <input type="number" step="1">
+        <input type="number" step="1" id="numberOfGuests">
       </div>
       <div id="column-names">
         <p style="text-align:left;">Dish name
@@ -47,122 +47,7 @@
         <button class="button" id="search">Search</button>
       </div>
     </div>
-    <div class="dishes">
-      <div class="dish" style="background-image: url('./images/bakedbrie.jpg');">
-        <div class="dish-name">
-          Baked Brie
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/icecream.jpg');">
-        <div class="dish-name">
-          Ice Cream
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/meatballs.jpg');">
-        <div class="dish-name">
-          Meatballs
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/bakedbrie.jpg');">
-        <div class="dish-name">
-          Baked Brie
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/icecream.jpg');">
-        <div class="dish-name">
-          Ice Cream
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/meatballs.jpg');">
-        <div class="dish-name">
-          Meatballs
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/bakedbrie.jpg');">
-        <div class="dish-name">
-          Baked Brie
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/icecream.jpg');">
-        <div class="dish-name">
-          Ice Cream
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/meatballs.jpg');">
-        <div class="dish-name">
-          Meatballs
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/bakedbrie.jpg');">
-        <div class="dish-name">
-          Baked Brie
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/icecream.jpg');">
-        <div class="dish-name">
-          Ice Cream
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/meatballs.jpg');">
-        <div class="dish-name">
-          Meatballs
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/bakedbrie.jpg');">
-        <div class="dish-name">
-          Baked Brie
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/icecream.jpg');">
-        <div class="dish-name">
-          Ice Cream
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/meatballs.jpg');">
-        <div class="dish-name">
-          Meatballs
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/bakedbrie.jpg');">
-        <div class="dish-name">
-          Baked Brie
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/icecream.jpg');">
-        <div class="dish-name">
-          Ice Cream
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/meatballs.jpg');">
-        <div class="dish-name">
-          Meatballs
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/bakedbrie.jpg');">
-        <div class="dish-name">
-          Baked Brie
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/icecream.jpg');">
-        <div class="dish-name">
-          Ice Cream
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/meatballs.jpg');">
-        <div class="dish-name">
-          Meatballs
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/bakedbrie.jpg');">
-        <div class="dish-name">
-          Baked Brie
-        </div>
-      </div>
-      <div class="dish" style="background-image: url('./images/icecream.jpg');">
-        <div class="dish-name">
-          Ice Cream
-        </div>
-      </div>
+    <div class="dishes" id="dishes">
       <div class="dish" style="background-image: url('./images/meatballs.jpg');">
         <div class="dish-name">
           Meatballs
@@ -180,5 +65,14 @@
 	<script src="js/model/dinnerModel.js"></script>
 	<script src="js/view/exampleView.js"></script>
 	<!-- TODO: Here you should include JS code for your other views -->
+    <script>
+        var dinnerModel = new DinnerModel();
+        dinnerModel.addDishToMenu(1);
+        dinnerModel.addDishToMenu(2);
+        dinnerModel.addDishToMenu(3);
+        dinnerModel.addDishToMenu(4);
+        dinnerModel.addDishToMenu(5);
+        var view1 = new SelectDishView($("body"), dinnerModel);
+    </script>
   </body>
 </html>
