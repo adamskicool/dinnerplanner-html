@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe');
+body {
+  padding: 0px;
+  margin: 0px;
+}
+/**
+Styla Titel segmentet, som är samma för alla sidor.
+**/
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(129, 177, 178);
+  height: 100px;
+  width: auto;
+}
+.title > h1{
+  font-family: 'ZCOOL KuaiLe', cursive;
+  color: rgba(30,53,77);
+}
+
+/**
+Styla lorem, endast på home.html
+**/
+.lorem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-left: 25%; margin-right: 25%;
+}
+.lorem > p {
+  text-align: center;
+}
+
+/**
+Styla diverse knappar och input
+**/
+.button, input, select {
+  background-color: rgba(198,224,118);
+  height: 40px;
+  width: 180px;
+  font-family: 'ZCOOL KuaiLe', cursive;
+  font-size: 16px;
+  border: 3px solid rgba(30,53,77);
+  box-shadow: 2px 2px rgba(30,53,77);
+}
+input[type="number"] {
+  height: 20px;
+  width: 60px;
+}
+.button:hover, input:hover, select:hover{
+  background-color: rgba(147,195,113);
+  transition: background-color 300ms linear;
+}
+
+/**
+Grid för selectdish.html
+**/
+.select-dish-grid {
+  display: grid;
+  grid-template-areas:
+      'a b'
+      'a c';
+  grid-template-columns: 250px auto;
+  grid-template-rows: auto 400px;
+  grid-gap: 3px;
+}
+
+/**
+Styla de olika grid-areas för select-dish-grid.
+**/
+.my-dinner, .find-a-dish, .dishes {
+  display: flex;
+  border: 3px solid rgba(30,53,77);
+  padding: 10px;
+  font-family: 'ZCOOL KuaiLe', cursive;
+}
+/**
+Styla my dinner delen av gridden.
+**/
+.my-dinner {
+  grid-area: a;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+#column-names {
+  height: 20px;
+}
+#total-cost {
+  text-align: right;
+}
+.find-a-dish {
+  grid-area: b;
+  flex-direction: column;
+}
+/**
+Styla dishes delen av gridden.
+**/
+.dishes {
+  grid-area: c;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
+.dish {
+  margin: 10px;
+  height: 100px;
+  width: 100px;
+  border: 3px solid rgba(30,53,77);
+}
+
+#collapse-button {
+  display: none;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .select-dish-grid {
+    display: grid;
+    grid-template-areas:
+        'a'
+        'b'
+        'c';
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-gap: 3px;
+  }
+  .dishes {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+  }
+  .dish {
+    height: 200px;
+    width: 200px;
+  }
+
+  /**
+  Göm vissa saker i my-dinner vid mobilläge
+  **/
+  #column-names, #confirm-order, #people-select {
+    display: none;
+  }
+
+  #collapse-button {
+    display: unset;
+    float: right;
+    height: 50px;
+    width: 50px;
+  }
+}
