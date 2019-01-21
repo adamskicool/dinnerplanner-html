@@ -60,13 +60,32 @@ var ExampleView = function (container, model) {
 var SelectDishView = function (container, model) {
     var dishes = container.find("#dishes");
     //fyll på dishes med det från selectedDishes i model.
-        model.getEntireMenu().forEach(function(dish) {
-       dishes.append(
-           '<div class="dish" style="background-image: url(\'./images/'+dish.image+'\');">' +
-           '<div class="dish-name">' +
-           dish.name +
-           '</div></div>');
+    model.getEntireMenu().forEach(function(dish) {
+    dishes.append(
+       '<div class="dish" style="background-image: url(\'./images/'+dish.image+'\');">' +
+       '<div class="dish-name">' +
+       dish.name +
+       '</div></div>');
     });
+}
 
+var OneDishSelectedView = function (container, model) {
+    model.addDishToMenu(1);
+    var selected_dishes = container.find("#selected-dishes");
+    var total_cost = container.find("#total-cost");
+    var cost = 0;
+    model.getFullMenu().forEach(function(dish) {
+        var name = dish.name;
+        var price = 0;
+        dish.ingredients.forEach(function(ingredient) {
+           price += ingredient.price*model.getNumberOfGuests(); 
+        });
+        cost += price;
+        selected_dishes.append(
+            "<h3 class=\"picked-dish\">"+name+" "+price+" SEK</h3>"
+        );
+    });
+    total_cost.html(""+cost+" SEK");
+    
 }
  

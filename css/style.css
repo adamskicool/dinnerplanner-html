@@ -88,8 +88,19 @@ Styla my dinner delen av gridden.
 #column-names {
   height: 20px;
 }
+.picked-dish {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 20px;
+    width: auto;
+    padding: 5px;
+    background-color: rgba(86, 150, 152);
+    border: 3px solid rgba(30,53,77);
+}
 #total-cost {
   text-align: right;
+    color: red;
 }
 .find-a-dish {
   grid-area: b;
