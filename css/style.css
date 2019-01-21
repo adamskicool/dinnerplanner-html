@@ -56,7 +56,7 @@ input[type="number"] {
 }
 
 /**
-Grid för selectdish.html
+Grid för selectdish.html, selectdish2.html
 **/
 .select-dish-grid {
   display: grid;
@@ -67,11 +67,23 @@ Grid för selectdish.html
   grid-template-rows: auto 400px;
   grid-gap: 3px;
 }
+/**
+Grid för viewdish.html
+**/
+.view-dish-grid {
+  display: grid;
+  grid-template-areas:
+      'a d';
+  grid-template-columns: 250px auto;
+  grid-template-rows: auto;
+  grid-gap: 3px;
+}
+
 
 /**
 Styla de olika grid-areas för select-dish-grid.
 **/
-.my-dinner, .find-a-dish, .dishes {
+.my-dinner, .find-a-dish, .dishes, .dish-more-info {
   display: flex;
   border: 3px solid rgba(30,53,77);
   padding: 10px;
@@ -106,6 +118,12 @@ Styla my dinner delen av gridden.
   grid-area: b;
   flex-direction: column;
 }
+.dish-more-info {
+    grid-area: d;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 /**
 Styla dishes delen av gridden.
 **/
@@ -127,9 +145,11 @@ Styla dishes delen av gridden.
 }
 
 
-
+/**
+Ändra lite saker som skall se annorlunda ut på mobilen.
+**/
 @media only screen and (max-width: 600px) {
-  .select-dish-grid {
+    .select-dish-grid {
     display: grid;
     grid-template-areas:
         'a'
@@ -139,6 +159,17 @@ Styla dishes delen av gridden.
     grid-template-rows: auto;
     grid-gap: 3px;
   }
+
+  .view-dish-grid {
+      display: grid;
+      grid-template-areas:
+          'a'
+          'd';
+      grid-template-columns: auto;
+      grid-template-rows: auto;
+      grid-gap: 3px;
+    }
+  
   .dishes {
     flex-direction: column;
     justify-content: center;
@@ -153,7 +184,7 @@ Styla dishes delen av gridden.
   /**
   Göm vissa saker i my-dinner vid mobilläge
   **/
-  #column-names, #confirm-order, #people-select {
+  #column-names, #confirm-order, #people-select, #selected-dishes {
     display: none;
   }
 
