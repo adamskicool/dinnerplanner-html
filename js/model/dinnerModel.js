@@ -29,6 +29,11 @@ var DinnerModel = function() {
 	this.getFullMenu = function() {
         return selectedDishes;
 	}
+    
+    //Return entire menu
+    this.getEntireMenu = function() {
+        return dishes;
+    }
 
 	//Returns all ingredients for all the dishes on the menu.
     //TODO: får det finnas flera av en ingrediens?

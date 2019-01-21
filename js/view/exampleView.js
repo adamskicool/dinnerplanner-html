@@ -60,7 +60,7 @@ var ExampleView = function (container, model) {
 var SelectDishView = function (container, model) {
     var dishes = container.find("#dishes");
     //fyll på dishes med det från selectedDishes i model.
-    model.getFullMenu().forEach(function(dish) {
+        model.getEntireMenu().forEach(function(dish) {
        dishes.append(
            '<div class="dish" style="background-image: url(\'./images/'+dish.image+'\');">' +
            '<div class="dish-name">' +
