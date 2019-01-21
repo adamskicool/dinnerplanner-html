@@ -105,11 +105,25 @@ Styla my dinner delen av gridden.
     justify-content: flex-start;
     align-items: center;
     height: 20px;
-    width: auto;
+    width: 90%;
     padding: 5px;
     background-color: rgba(86, 150, 152);
     border: 3px solid rgba(30,53,77);
-}
+    }
+    .alignleft {
+      width:50%;
+      float:left;
+      text-align: left;
+    }
+
+    .alignright {
+      width:50%;
+      float:left;
+      text-align: right;
+    }
+  }
+
+
 #total-cost {
   text-align: right;
     color: red;
