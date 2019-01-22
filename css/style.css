@@ -158,6 +158,22 @@ Styla dishes delen av gridden.
   display: none;
 }
 
+/**
+Styla dish-more-info, används i viewdish.html
+**/
+#dish-info {
+  padding: 10px;
+  margin: 5px;
+}
+#dish-ingredients, #dish-preparation {
+  padding: 10px;
+  margin: 5px;
+  border: 3px solid rgba(30,53,77);
+}
+
+#dish-ingredients {
+  background-color: rgba(236, 230, 61);
+}
 
 /**
 Ändra lite saker som skall se annorlunda ut på mobilen.
@@ -183,7 +199,7 @@ Styla dishes delen av gridden.
       grid-template-rows: auto;
       grid-gap: 3px;
     }
-  
+
   .dishes {
     flex-direction: column;
     justify-content: center;
