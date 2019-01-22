@@ -97,10 +97,10 @@ var OneDishSelectedView = function (container, model) {
 		var preparation = container.find("#dish-preparation");
 		var numberOfGuests = model.getNumberOfGuests();
 		dishInfo.prepend("<h3>" + dish.name +"</h3><img src=\"images/" + dish.image+"\"><p>" +dish.type +"</p>")
-		ingredients.prepend("<h3>Ingredients for " +numberOfGuests+ " people:</h3>");
 		dish.ingredients.forEach(function (ingredient) {
-			ingredients.prepend("<p>" + ingredient.quantity + " "+ ingredient.unit+ " "+ingredient.name + " SEK"+ ingredient.price*numberOfGuests + "</p>");
-		})
+			ingredients.prepend("<p>" + ingredient.quantity + " "+ ingredient.unit+ " "+ingredient.name + " SEK "+ ingredient.price*numberOfGuests + "</p>");
+		});
+		ingredients.prepend("<h3>Ingredients for " +numberOfGuests+ " people:</h3>");
 		preparation.append("<p>"+dish.description+"</p>");
 
 	}
