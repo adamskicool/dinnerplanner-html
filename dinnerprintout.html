@@ -18,17 +18,19 @@
     <h3>My Dinner: 3 People</h3>
     <button class="button" id="my-dinner-subtitle-button">Edit Dinner</button>
   </div>
-  <div class="dish-print-out-grid">
-    <div class="print-out-image">
-      <img src="images/meatballs.jpg">
-    </div>
-    <div class="print-out-description">
-      <h3>Meatballs</h3>
-      <p>Köttbullar är gott!</p>
-    </div>
-    <div class="print-out-preparation">
-      <h3>Preparation</h3>
-      <p>Men det skall lagas med varsamhet!</p>
+  <div id="dish-print-out">
+    <div class="dish-print-out-grid">
+      <div class="print-out-image">
+        <img src="images/meatballs.jpg">
+      </div>
+      <div class="print-out-description">
+        <h3>Meatballs</h3>
+        <p>Köttbullar är gott!</p>
+      </div>
+      <div class="print-out-preparation">
+        <h3>Preparation</h3>
+        <p>Men det skall lagas med varsamhet!</p>
+      </div>
     </div>
   </div>
   <!-- jQuery -->
@@ -43,6 +45,7 @@
 	<!-- TODO: Here you should include JS code for your other views -->
     <script>
         var dinnerModel = new DinnerModel();
+        var view = new dishPrintOutView($("body"), dinnerModel);
     </script>
   </body>
 </html>

@@ -114,11 +114,24 @@ var OneDishSelectedView = function (container, model) {
 		dinnerSubtitle.prepend("<h3>My Dinner: " + numberOfGuests+ " People</h3>");
 		dishesToAdd.forEach(function(dish) {
 			model.addDishToMenu(dish);
-		})
+		});
 		model.getFullMenu().forEach(function(dish) {
 			var price = model.getDishPrice(dish);
 			dishesOverview.prepend("<div class=\"dish-overview\" style=\"background-image: url('./images/" + dish.image+"');\"><div class=\"dish-name\">" + dish.name + "</div><p class=\"dish-price\">" + price +" SEK</p></div>")
-		})
+		});
 		totalCost.append("<h3>" + model.getTotalMenuPrice()+ " SEK</h3>");
 
+	}
+
+	var dishPrintOutView = function (container, model) {
+		var dishPrintOut = container.find("#dish-print-out");
+		var dinnerSubtitle = container.find("#my-dinner-subtitle");
+		var dishesToAdd = [1,2,3,100,101,102,103,200];
+		dinnerSubtitle.prepend("<h3>My Dinner: " + model.numberOfGuests+ " People</h3>");
+		dishesToAdd.forEach(function(dish) {
+			model.addDishToMenu(dish);
+		});
+		model.getFullMenu().forEach(function(dish) {
+			dishPrintOut.append("<div class=\"dish-print-out-grid\"><div class=\"print-out-image\"><img src=\"images/" + dish.image +"\"></div><div class=\"print-out-description\"><h3>" + dish.name + "</h3><p>" + dish.type +"</p></div><div class=\"print-out-preparation\"><h3>Preparation</h3><p>" + dish.description+"</p></div></div>");
+		});
 	}
