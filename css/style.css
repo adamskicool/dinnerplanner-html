@@ -2,6 +2,7 @@
 body {
   padding: 0px;
   margin: 0px;
+  font-family: 'ZCOOL KuaiLe', cursive;
 }
 /**
 Styla Titel segmentet, som är samma för alla sidor.
@@ -122,8 +123,6 @@ Styla my dinner delen av gridden.
       text-align: right;
     }
   }
-
-
 #total-cost {
   text-align: right;
     color: red;
@@ -147,12 +146,13 @@ Styla dishes delen av gridden.
   flex-wrap: wrap;
   overflow-y: scroll;
 }
-.dish {
+.dish, .dish-overview {
   margin: 10px;
   height: 100px;
   width: 100px;
   border: 3px solid rgba(30,53,77);
 }
+
 
 #collapse-button {
   display: none;
@@ -174,6 +174,39 @@ Styla dish-more-info, används i viewdish.html
 #dish-ingredients {
   background-color: rgba(236, 230, 61);
 }
+
+/**
+Styla subtitlen med information om hur många gäster och
+tillbakaknapp för filen dinneroverview.html.
+**/
+#my-dinner-subtitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 10%; padding-right: 10%;
+  padding-top: 10px;
+  border-bottom: 5px solid rgba(30,53,77);
+}
+.dishes-overview {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.overview-total-cost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  padding: 10px;
+  border-left: 3px solid rgba(30,53,77);
+}
+#print-recipe {
+  display: flex;
+  margin: 20px;
+  justify-content: center;
+}
+
+
 
 /**
 Ändra lite saker som skall se annorlunda ut på mobilen.
