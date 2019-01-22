@@ -206,7 +206,38 @@ tillbakaknapp för filen dinneroverview.html.
   justify-content: center;
 }
 
-
+/**
+Grid och style för dinnerprintout.html
+**/
+.dish-print-out-grid {
+  display: grid;
+  grid-template-areas:
+    'e f g';
+  grid-template-rows: auto;
+  grid-template-columns: 20% 30% 50%;
+}
+.print-out-image {
+  grid-area: e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.print-out-image > img {
+  border: 3px solid rgba(30,53,77);
+}
+.print-out-description {
+  grid-area: f;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.print-out-preparation {
+  grid-area: g;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
 
 /**
 Ändra lite saker som skall se annorlunda ut på mobilen.
@@ -231,6 +262,16 @@ tillbakaknapp för filen dinneroverview.html.
       grid-template-columns: auto;
       grid-template-rows: auto;
       grid-gap: 3px;
+    }
+
+    .dish-print-out-grid {
+      display: grid;
+      grid-template-areas:
+        'e'
+        'f'
+        'g';
+      grid-template-rows: auto;
+      grid-template-columns: auto;
     }
 
   .dishes {
