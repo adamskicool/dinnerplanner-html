@@ -127,7 +127,7 @@ var OneDishSelectedView = function (container, model) {
 		var dishPrintOut = container.find("#dish-print-out");
 		var dinnerSubtitle = container.find("#my-dinner-subtitle");
 		var dishesToAdd = [1,2,3,100,101,102,103,200];
-		dinnerSubtitle.prepend("<h3>My Dinner: " + model.numberOfGuests+ " People</h3>");
+		dinnerSubtitle.prepend("<h3>My Dinner: " + model.getNumberOfGuests()+ " People</h3>");
 		dishesToAdd.forEach(function(dish) {
 			model.addDishToMenu(dish);
 		});
