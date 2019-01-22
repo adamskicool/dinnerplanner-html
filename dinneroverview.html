@@ -15,24 +15,10 @@
 		<h1 id="title-text">Dinner planner</h1>
 	</div>
   <div id="my-dinner-subtitle">
-    <h3>My Dinner: 3 People</h3>
     <button class="button" id="my-dinner-subtitle-button">Edit Dinner</button>
   </div>
   <div class="dishes-overview" id="dishes">
-    <div class="dish-overview" style="background-image: url('./images/meatballs.jpg');">
-      <div class="dish-name">
-        Meatballs
-      </div>
-      <p class="dish-price">50 SEK</p>
-    </div>
-    <div class="dish-overview" style="background-image: url('./images/meatballs.jpg');">
-      <div class="dish-name">
-        Meatballs
-      </div>
-      <p class="dish-price">50 SEK</p>
-    </div>
-    <div class="overview-total-cost">
-      <h3 id="cost">100 SEK</h3>
+    <div class="overview-total-cost" id="cost">
     </div>
   </div>
   <div id="print-recipe">
@@ -50,6 +36,7 @@
 	<!-- TODO: Here you should include JS code for your other views -->
     <script>
         var dinnerModel = new DinnerModel();
+        var view = new dinnerOverviewView($("body"), dinnerModel);
     </script>
   </body>
 </html>

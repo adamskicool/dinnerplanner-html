@@ -99,8 +99,26 @@ var OneDishSelectedView = function (container, model) {
 		dishInfo.prepend("<h3>" + dish.name +"</h3><img src=\"images/" + dish.image+"\"><p>" +dish.type +"</p>")
 		ingredients.prepend("<h3>Ingredients for " +numberOfGuests+ " people:</h3>");
 		dish.ingredients.forEach(function (ingredient) {
-			ingredients.prepend("<p>" + ingredient.quantity + " "+ ingredient.unit+ " "+ingredient.name + " SEK"+ ingredient.price + "</p>");
+			ingredients.prepend("<p>" + ingredient.quantity + " "+ ingredient.unit+ " "+ingredient.name + " SEK"+ ingredient.price*numberOfGuests + "</p>");
 		})
 		preparation.append("<p>"+dish.description+"</p>");
+
+	}
+
+	var dinnerOverviewView = function (container, model) {
+		var dinnerSubtitle = container.find("#my-dinner-subtitle");
+		var dishesOverview = container.find("#dishes");
+		var totalCost = container.find("#cost");
+		var numberOfGuests = model.getNumberOfGuests();
+		var dishesToAdd = [1,2,3,100,101,102,103,200];
+		dinnerSubtitle.prepend("<h3>My Dinner: " + numberOfGuests+ " People</h3>");
+		dishesToAdd.forEach(function(dish) {
+			model.addDishToMenu(dish);
+		})
+		model.getFullMenu().forEach(function(dish) {
+			var price = model.getDishPrice(dish);
+			dishesOverview.prepend("<div class=\"dish-overview\" style=\"background-image: url('./images/" + dish.image+"');\"><div class=\"dish-name\">" + dish.name + "</div><p class=\"dish-price\">" + price +" SEK</p></div>")
+		})
+		totalCost.append("<h3>" + model.getTotalMenuPrice()+ " SEK</h3>");
 
 	}
