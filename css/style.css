@@ -225,6 +225,7 @@ Grid och style för dinnerprintout.html
 }
 .print-out-image > img {
   border: 3px solid rgba(30,53,77);
+  border-radius: 10000px;
 }
 .print-out-description {
   grid-area: f;
@@ -291,7 +292,6 @@ Grid och style för dinnerprintout.html
   #column-names, #confirm-order, #people-select, #selected-dishes {
     display: none;
   }
-
   #collapse-button {
     display: unset;
     float: right;
