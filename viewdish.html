@@ -36,23 +36,13 @@
     </div>
     <div class="dish-more-info">
         <div id="dish-info">
-            <h3>Toast</h3>
-            <img src="images/toast.jpg">
-            <p>This toast is very delicious and also... it tastes very nice!</p>
             <button class="button">Back to search</button>
         </div>
         <div id="dish-ingredients">
-            <h3>Ingredients for x people:</h3>
-            <p>200g Ham SEK 25</p>
-            <p>200g Ham SEK 25</p>
-            <p>200g Ham SEK 25</p>
-            <p>200g Ham SEK 25</p>
-            <p>200g Ham SEK 25</p>
             <button class="button">Add to menu</button>
         </div>
         <div id="dish-preparation">
-            <h3>Preparations</h3>
-            <p>To make this delicions ham toast one has to do a lot of things...</p>
+            <h3>Preparation</h3>
         </div>
     </div>
   </div>
@@ -68,8 +58,7 @@
 	<!-- TODO: Here you should include JS code for your other views -->
     <script>
         var dinnerModel = new DinnerModel();
-        var view1 = new SelectDishView($("body"), dinnerModel);
-        var view2 = new OneDishSelectedView($("body"), dinnerModel);
+        var view = new viewDishView($("body"), dinnerModel);
     </script>
   </body>
 </html>
