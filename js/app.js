@@ -21,6 +21,7 @@ $(function() {
 	 new searchBarView($(".select-dish-grid"), dinnerModel);
 	 new dishesView($(".select-dish-grid"), dinnerModel);
 	 new dishMoreInfoView($(".view-dish-grid"), dinnerModel);
-	 new dinnerSubtitle($("#my-dinner-subtitle"), dinnerModel)
+	 new dinnerSubtitle($("#my-dinner-subtitle"), dinnerModel);
+     new dishOverviewView($("#dishes-overview"), dinnerModel);
 
 });
