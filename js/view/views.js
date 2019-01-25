@@ -107,7 +107,7 @@ var OneDishSelectedView = function (container, model) {
 
 	var dinnerOverviewView = function (container, model) {
 		var dinnerSubtitle = container.find("#my-dinner-subtitle");
-		var dishesOverview = container.find("#dishes");
+		var dishesOverview = container.find("#dishes-overview");
 		var totalCost = container.find("#cost");
 		var numberOfGuests = model.getNumberOfGuests();
 		var dishesToAdd = [1,2,3,100,101,102,103,200];
@@ -134,4 +134,58 @@ var OneDishSelectedView = function (container, model) {
 		model.getFullMenu().forEach(function(dish) {
 			dishPrintOut.append("<div class=\"dish-print-out-grid\"><div class=\"print-out-image\"><img src=\"images/" + dish.image +"\"></div><div class=\"print-out-description\"><h3>" + dish.name + "</h3><p>" + dish.type +"</p></div><div class=\"print-out-preparation\"><h3>Preparation</h3><p>" + dish.description+"</p></div></div>");
 		});
+	}
+
+	var sideMenuView = function (container, model) {
+		var myDinner = container.find("#my-dinner");
+		var dishes = "";
+		model.getFullMenu().forEach(function(dish) {
+    	dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+dish.name+"</p><p class=\"alignright\">"+model.getDishPrice(dish)+"</p></h3>";
+		});
+		var string = "<h3>My Dinner</h3>\n  <button class=\"button\" id=\"collapse-button\">\uF8FF</button>\n  <div id=\"people-select\">\n    people\n    <input type=\"number\" step=\"1\" id=\"numberOfGuests\">\n  </div>\n  <div id=\"column-names\">\n    <p style=\"text-align:left;\">Dish name\n      <span style=\"float: right;\">Cost</span>\n    </p>\n  </div>\n  <div id=\"selected-dishes\">\n" + dishes+"  </div>\n  <p id=\"total-cost\">"+model.getTotalMenuPrice()+"</p>\n  <div style=\"text-align:center\">\n    <button class=\"button\" id=\"confirm-order\">confirm order</button>";
+		myDinner.html(string);
+	}
+
+	var searchBarView = function (container, model) {
+		var findDish = container.find("#find-a-dish");
+		var string = "\n      <div>\n        <input type=\"text\">\n        <select selected=\"All\">\n          <option>All</option>\n          <option>Main Course</option>\n          <option>Side Dish</option>\n          <option>Dessert</option>\n          <option>Appetizer</option>\n          <option>...</option>\n        </select>\n        <button class=\"button\" id=\"search\">Search</button>\n      </div>";
+		if(model.getFullMenu().length >0){
+			string = "Select Another" + string;
+		}else{
+			string = "Select A Dish" + string;
+		}
+		findDish.html(string);
+	}
+
+	var dishesView = function (container, model) {
+		var string = "";
+		var dishes = container.find("#dishes");
+		model.getEntireMenu().forEach(function(dish) {
+    string +=
+       '<div class="dish" style="background-image: url(\'./images/'+dish.image+'\');">' +
+       '<div class="dish-name">' +
+       dish.name +
+       '</div></div>';
+    });
+		dishes.html(string);
+	}
+
+	var dishMoreInfoView = function (container, model) {
+			var dishId = 2;
+			var dish = model.getDish(dishId);
+			var dishInfo = container.find("#dish-info");
+			var ingredients = container.find("#dish-ingredients");
+			var preparation = container.find("#dish-preparation");
+			var numberOfGuests = model.getNumberOfGuests();
+			dishInfo.prepend("<h3>" + dish.name +"</h3><img src=\"images/" + dish.image+"\"><p>" +dish.type +"</p>")
+			dish.ingredients.forEach(function (ingredient) {
+				ingredients.prepend("<p>" + ingredient.quantity + " "+ ingredient.unit+ " "+ingredient.name + " SEK "+ ingredient.price*numberOfGuests + "</p>");
+			});
+			ingredients.prepend("<h3>Ingredients for " +numberOfGuests+ " people:</h3>");
+			preparation.append("<p>"+dish.description+"</p>");
+	}
+
+	var dinnerSubtitle = function (container, model) {
+		var string = "<h3>My Dinner: " + model.getNumberOfGuests()+ " People</h3>\n<button class=\"button\" id=\"my-dinner-subtitle-button\">Edit Dinner</button>";
+		container.html(string);
 	}

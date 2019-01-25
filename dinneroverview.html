@@ -17,12 +17,12 @@
   <div id="my-dinner-subtitle">
     <button class="button" id="my-dinner-subtitle-button">Edit Dinner</button>
   </div>
-  <div class="dishes-overview" id="dishes">
+  <div class="dishes-overview" id="dishes-overview">
     <div class="overview-total-cost" id="cost">
     </div>
-  </div>
-  <div id="print-recipe">
-    <button class="button">Print Full Recipe</button>
+    <div id="print-recipe">
+      <button class="button">Print Full Recipe</button>
+    </div>
   </div>
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery.js"></script>
@@ -34,9 +34,5 @@
 	<script src="js/model/dinnerModel.js"></script>
 	<script src="js/view/views.js"></script>
 	<!-- TODO: Here you should include JS code for your other views -->
-    <script>
-        var dinnerModel = new DinnerModel();
-        var view = new dinnerOverviewView($("body"), dinnerModel);
-    </script>
   </body>
 </html>
