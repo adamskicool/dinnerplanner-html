@@ -145,7 +145,8 @@ var OneDishSelectedView = function (container, model) {
   }
 
 	var homeView = function (container, model) {
-		container.html("<p>\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut lorem est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer diam ante, commodo id dolor et, hendrerit malesuada ipsum. Nullam rutrum lorem sed arcu commodo rhoncus. Etiam sit amet molestie ligula, id dapibus est. Nullam faucibus ex ac sagittis lacinia. Vestibulum condimentum in purus non gravida. Cras tincidunt auctor erat nec commodo. In at quam at orci malesuada posuere. Sed in augue tempor, bibendum lectus et, euismod dolor. Etiam in molestie nisi, porta vestibulum urna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum suscipit velit ornare purus faucibus, in maximus diam feugiat.\n</p>\n      <button class=\"button\">\n        Create new dinner\n      </button>");
+		container.html("<p>\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut lorem est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer diam ante, commodo id dolor et, hendrerit malesuada ipsum. Nullam rutrum lorem sed arcu commodo rhoncus. Etiam sit amet molestie ligula, id dapibus est. Nullam faucibus ex ac sagittis lacinia. Vestibulum condimentum in purus non gravida. Cras tincidunt auctor erat nec commodo. In at quam at orci malesuada posuere. Sed in augue tempor, bibendum lectus et, euismod dolor. Etiam in molestie nisi, porta vestibulum urna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum suscipit velit ornare purus faucibus, in maximus diam feugiat.\n</p>\n      <button class=\"button\" onclick=\"selectDish()\">\n        Create new dinner\n      </button>");
+        
 	}
 
 
@@ -155,7 +156,7 @@ var OneDishSelectedView = function (container, model) {
 		model.getFullMenu().forEach(function(dish) {
     	dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+dish.name+"</p><p class=\"alignright\">"+model.getDishPrice(dish)+"</p></h3>";
 		});
-		var string = "<h3>My Dinner</h3>\n  <button class=\"button\" id=\"collapse-button\">\uF8FF</button>\n  <div id=\"people-select\">\n    people\n    <input type=\"number\" step=\"1\" id=\"numberOfGuests\">\n  </div>\n  <div id=\"column-names\">\n    <p style=\"text-align:left;\">Dish name\n      <span style=\"float: right;\">Cost</span>\n    </p>\n  </div>\n  <div id=\"selected-dishes\">\n" + dishes+"  </div>\n  <p id=\"total-cost\">"+model.getTotalMenuPrice()+"</p>\n  <div style=\"text-align:center\">\n    <button class=\"button\" id=\"confirm-order\">confirm order</button>";
+		var string = "<h3>My Dinner</h3>\n  <button class=\"button\" id=\"collapse-button\">\uF8FF</button>\n  <div id=\"people-select\">\n    people\n    <input type=\"number\" step=\"1\" id=\"numberOfGuests\">\n  </div>\n  <div id=\"column-names\">\n    <p style=\"text-align:left;\">Dish name\n      <span style=\"float: right;\">Cost</span>\n    </p>\n  </div>\n  <div id=\"selected-dishes\">\n" + dishes+"  </div>\n  <p id=\"total-cost\">"+model.getTotalMenuPrice()+"</p>\n  <div style=\"text-align:center\">\n    <button class=\"button\" id=\"confirm-order\" onClick=\"viewDinnerOverview()\">confirm order</button>";
 		myDinner.html(string);
 	}
 
@@ -199,7 +200,7 @@ var OneDishSelectedView = function (container, model) {
 	}
 
 	var dinnerSubtitle = function (container, model) {
-		var string = "<h3>My Dinner: " + model.getNumberOfGuests()+ " People</h3>\n<button class=\"button\" id=\"my-dinner-subtitle-button\">Edit Dinner</button>";
+		var string = "<h3>My Dinner: " + model.getNumberOfGuests()+ " People</h3>\n<button class=\"button\" id=\"my-dinner-subtitle-button\" onClick=\"selectDish()\">Edit Dinner</button>";
 		container.html(string);
 	}
 
@@ -218,8 +219,4 @@ var OneDishSelectedView = function (container, model) {
 			string += "<div class=\"dish-print-out-grid\"><div class=\"print-out-image\"><img src=\"images/" + dish.image +"\"></div><div class=\"print-out-description\"><h3>" + dish.name + "</h3><p>" + dish.type +"</p></div><div class=\"print-out-preparation\"><h3>Preparation</h3><p>" + dish.description+"</p></div></div>";
 		});
 		container.html(string);
-	}
-
-	var startMenu = function(container, model) {
-		container.style.display = 'none';
 	}
