@@ -89,7 +89,7 @@ var OneDishSelectedView = function (container, model) {
 
 }
 
-	var viewDishView = function (container, model) {
+	var viewDishViewOld = function (container, model) {
 		var dishId = 2;
 		var dish = model.getDish(dishId);
 		var dishInfo = container.find("#dish-info");
@@ -105,7 +105,7 @@ var OneDishSelectedView = function (container, model) {
 
 	}
 
-	var dinnerOverviewView = function (container, model) {
+	var dinnerOverviewViewOld = function (container, model) {
 		var dinnerSubtitle = container.find("#my-dinner-subtitle");
 		var dishesOverview = container.find("#dishes-overview");
 		var totalCost = container.find("#cost");
@@ -123,7 +123,7 @@ var OneDishSelectedView = function (container, model) {
 
 	}
 
-	var dishPrintOutView = function (container, model) {
+	var dishPrintOutViewOld = function (container, model) {
 		var dishPrintOut = container.find("#dish-print-out");
 		var dinnerSubtitle = container.find("#my-dinner-subtitle");
 		var dishesToAdd = [1,2,3,100,101,102,103,200];
@@ -135,6 +135,19 @@ var OneDishSelectedView = function (container, model) {
 			dishPrintOut.append("<div class=\"dish-print-out-grid\"><div class=\"print-out-image\"><img src=\"images/" + dish.image +"\"></div><div class=\"print-out-description\"><h3>" + dish.name + "</h3><p>" + dish.type +"</p></div><div class=\"print-out-preparation\"><h3>Preparation</h3><p>" + dish.description+"</p></div></div>");
 		});
 	}
+
+	function toggle_visibility_flex(id) {
+     var e = document.getElementById(id);
+     if(e.style.display == 'block')
+        e.style.display = 'none';
+     else
+        e.style.display = 'block';
+  }
+
+	var homeView = function (container, model) {
+		container.html("<p>\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut lorem est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer diam ante, commodo id dolor et, hendrerit malesuada ipsum. Nullam rutrum lorem sed arcu commodo rhoncus. Etiam sit amet molestie ligula, id dapibus est. Nullam faucibus ex ac sagittis lacinia. Vestibulum condimentum in purus non gravida. Cras tincidunt auctor erat nec commodo. In at quam at orci malesuada posuere. Sed in augue tempor, bibendum lectus et, euismod dolor. Etiam in molestie nisi, porta vestibulum urna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum suscipit velit ornare purus faucibus, in maximus diam feugiat.\n</p>\n      <button class=\"button\">\n        Create new dinner\n      </button>");
+	}
+
 
 	var sideMenuView = function (container, model) {
 		var myDinner = container.find("#my-dinner");
@@ -189,12 +202,24 @@ var OneDishSelectedView = function (container, model) {
 		var string = "<h3>My Dinner: " + model.getNumberOfGuests()+ " People</h3>\n<button class=\"button\" id=\"my-dinner-subtitle-button\">Edit Dinner</button>";
 		container.html(string);
 	}
-    
-    var dishOverviewView = function (container, model) {
-		var totalCost = container.find("#cost");
+
+  var dishOverviewView = function (container, model) {
+	var totalCost = container.find("#cost");
+	model.getFullMenu().forEach(function(dish) {
+		var price = model.getDishPrice(dish);
+		container.prepend("<div class=\"dish-overview\" style=\"background-image: url('./images/" + dish.image+"');\"><div class=\"dish-name\">" + dish.name + "</div><p class=\"dish-price\">" + price +" SEK</p></div>")
+	});
+	totalCost.append("<h3>" + model.getTotalMenuPrice()+ " SEK</h3>");
+  }
+
+	var dishPrintOutView = function(container, model) {
+		var string = "";
 		model.getFullMenu().forEach(function(dish) {
-			var price = model.getDishPrice(dish);
-			container.prepend("<div class=\"dish-overview\" style=\"background-image: url('./images/" + dish.image+"');\"><div class=\"dish-name\">" + dish.name + "</div><p class=\"dish-price\">" + price +" SEK</p></div>")
+			string += "<div class=\"dish-print-out-grid\"><div class=\"print-out-image\"><img src=\"images/" + dish.image +"\"></div><div class=\"print-out-description\"><h3>" + dish.name + "</h3><p>" + dish.type +"</p></div><div class=\"print-out-preparation\"><h3>Preparation</h3><p>" + dish.description+"</p></div></div>";
 		});
-		totalCost.append("<h3>" + model.getTotalMenuPrice()+ " SEK</h3>");
-    }
+		container.html(string);
+	}
+
+	var startMenu = function(container, model) {
+		container.style.display = 'none';
+	}

@@ -16,12 +16,14 @@ $(function() {
 	 // var view3 = new viewDishView($("body"), dinnerModel);
 	 // var view4 = new dishPrintOutView($("body"), dinnerModel);
 	 // var view5 = new dinnerOverviewView($("body"), dinnerModel);
+	 new homeView ($(".lorem"), dinnerModel);
 	 new sideMenuView($(".select-dish-grid"), dinnerModel);
 	 new sideMenuView($(".view-dish-grid"), dinnerModel);
 	 new searchBarView($(".select-dish-grid"), dinnerModel);
 	 new dishesView($(".select-dish-grid"), dinnerModel);
 	 new dishMoreInfoView($(".view-dish-grid"), dinnerModel);
-	 new dinnerSubtitle($("#my-dinner-subtitle"), dinnerModel);
-     new dishOverviewView($("#dishes-overview"), dinnerModel);
-
+	 new dinnerSubtitle($(".my-dinner-subtitle"), dinnerModel);
+   new dishOverviewView($(".dishes-overview"), dinnerModel);
+	 new dishPrintOutView($(".dish-print-out"), dinnerModel);
+	 new startMenu($(".select-dish-grid"), dinnerModel);
 });
