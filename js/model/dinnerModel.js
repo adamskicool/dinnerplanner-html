@@ -53,7 +53,7 @@ var DinnerModel = function() {
     dish.ingredients.forEach(function(ingredient) {
       price = price + ingredient.price * numberOfGuests;
     });
-    return price; 
+    return price;
   }
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
@@ -68,11 +68,14 @@ var DinnerModel = function() {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-		dishes.forEach(function(dish) {
-            if(dish.id === id) {
-                selectedDishes.push(dish);
-            }
-        });
+    var newDish = this.getDish(id);
+
+    selectedDishes.forEach(function(selectedDish) {
+      if(selectedDish.type === newDish.type){
+        this.removeDishFromMenu(selectedDish.id);
+      };
+    });
+    selectedDishes.push(newDish);
 	}
 
 	//Removes dish from menu
