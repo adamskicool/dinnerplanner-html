@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dinner planner</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+
+  </head>
+  <body>
+	<div class="title">
+		<h1 id="title-text">Dinner planner</h1>
+	</div>
+  <div class="view-dish-grid">
+    <div class="my-dinner" id="my-dinner">
+      <h3>My Dinner</h3>
+      <button class="button" id="collapse-button"></button>
+      <div id="people-select">
+        people
+        <input type="number" step="1" id="numberOfGuests">
+      </div>
+      <div id="column-names">
+        <p style="text-align:left;">Dish name
+          <span style="float: right;">Cost</span>
+        </p>
+      </div>
+      <div id="selected-dishes">
+      </div>
+      <p id="total-cost">SEK 0.00</p>
+      <div style="text-align:center">
+        <button class="button" id="confirm-order">confirm order</button>
+      </div>
+    </div>
+    <div class="dish-more-info">
+        <div id="dish-info">
+            <button class="button">Back to search</button>
+        </div>
+        <div id="dish-ingredients">
+            <button class="button">Add to menu</button>
+        </div>
+        <div id="dish-preparation">
+            <h3>Preparation</h3>
+        </div>
+    </div>
+  </div>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+	<!-- The application JavaScript code -->
+	<script src="js/app.js"></script>
+	<script src="js/model/dinnerModel.js"></script>
+	<script src="js/view/views.js"></script>
+	<!-- TODO: Here you should include JS code for your other views -->
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dinner planner</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+
+  </head>
+  <body>
+	<div class="title">
+		<h1 id="title-text">Dinner planner</h1>
+	</div>
+  <div id="my-dinner-subtitle">
+    <button class="button" id="my-dinner-subtitle-button">Edit Dinner</button>
+  </div>
+  <div id="dish-print-out">
+    <div class="dish-print-out-grid">
+      <div class="print-out-image">
+        <img src="images/meatballs.jpg">
+      </div>
+      <div class="print-out-description">
+        <h3>Meatballs</h3>
+        <p>Köttbullar är gott!</p>
+      </div>
+      <div class="print-out-preparation">
+        <h3>Preparation</h3>
+        <p>Men det skall lagas med varsamhet!</p>
+      </div>
+    </div>
+  </div>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+	<!-- The application JavaScript code -->
+	<script src="js/app.js"></script>
+	<script src="js/model/dinnerModel.js"></script>
+	<script src="js/view/views.js"></script>
+	<!-- TODO: Here you should include JS code for your other views -->
+  </body>
+</html>

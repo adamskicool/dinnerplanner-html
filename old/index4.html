@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dinner planner</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+
+  </head>
+  <body>
+	<div class="title">
+		<h1>Dinner planner</h1>
+
+	</div>
+  <div class="main-content">
+    <div class="lorem" id="lorem">
+    </div>
+    <div class="select-dish-grid" id="select-dish-grid">
+        <div class="my-dinner" id="my-dinner">
+        </div>
+        <div class="find-a-dish" id="find-a-dish">
+        </div>
+        <div class="dishes" id="dishes">
+        </div>
+    </div>
+    <div class="view-dish-grid" id="view-dish-grid">
+        <div class="my-dinner" id="my-dinner">
+        </div>
+        <div class="dish-more-info" id="dish-more-info">
+            <div id="dish-info">
+                <button class="button">Back to search</button>
+            </div>
+            <div id="dish-ingredients">
+                <button class="button">Add to menu</button>
+            </div>
+            <div id="dish-preparation">
+                <h3>Preparation</h3>
+            </div>
+        </div>
+    </div>
+    <div class="my-dinner-subtitle" id="my-dinner-subtitle">
+    </div>
+    <div class="dishes-overview" id="dishes-overview">
+        <div class="overview-total-cost" id="cost">
+        </div>
+        <div id="print-recipe">
+          <button class="button" onClick="viewDinnerPrintOut()">Print Full Recipe</button>
+        </div>
+    </div>
+    <div class="dish-print-out" id="dish-print-out">
+    </div>
+  </div>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+	<!-- The application JavaScript code -->
+	<script src="js/app.js"></script>
+	<script src="js/model/dinnerModel.js"></script>
+	<script src="js/view/views.js"></script>
+	<!-- TODO: Here you should include JS code for your other views -->
+  </body>
+</html>
