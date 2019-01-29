@@ -1,6 +1,20 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
-
+    observers = [];
+    
+    this.addObserver = function(observer) {
+        observers.push(observer);
+    }
+    
+    var notifyObservers = function(changeDetails) {
+        alert("Notify");
+        for(var i=0; i<this.observers.length; i++) {
+            observers[i].update(this, changeDetails);
+        }	
+    }
+    
+    
+    
 	//TODO Lab 1 implement the data structure that will hold number of guest
     var numberOfGuests = 3;
 	// and selected dishes for the dinner menu
@@ -8,6 +22,7 @@ var DinnerModel = function() {
 
 	this.setNumberOfGuests = function(num) {
 		numberOfGuests = num;
+        notifyObservers();
 	}
 
 	this.getNumberOfGuests = function() {
@@ -47,14 +62,14 @@ var DinnerModel = function() {
         return ingredients;
 	}
 
-  //Return the price of one dish
-  this.getDishPrice = function(dish) {
-    var price = 0;
-    dish.ingredients.forEach(function(ingredient) {
-      price = price + ingredient.price * numberOfGuests;
-    });
-    return price;
-  }
+      //Return the price of one dish
+      this.getDishPrice = function(dish) {
+        var price = 0;
+        dish.ingredients.forEach(function(ingredient) {
+          price = price + ingredient.price * numberOfGuests;
+        });
+        return price;
+      }
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
@@ -68,18 +83,18 @@ var DinnerModel = function() {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-    var newDish = this.getDish(id);
-
-    selectedDishes.forEach(function(selectedDish) {
-      if(selectedDish.type === newDish.type){
-        this.removeDishFromMenu(selectedDish.id);
-      };
-    });
-    selectedDishes.push(newDish);
+        var newDish = this.getDish(id);
+        selectedDishes.forEach(function(dish) {
+            if(dish.type === newDish.type) {
+                removeDishFromMenu(dish.id);
+            }
+        });
+        selectedDishes.push(newDish);
+        notifyObservers("Lade till en dish!");
 	}
 
 	//Removes dish from menu
-	this.removeDishFromMenu = function(id) {
+	var removeDishFromMenu = function(id) {
 		for(var i = 0; i < selectedDishes.length-1; i++) {
             if(selectedDishes[i].id === id) {
                 selectedDishes.splice(i, 1);
