@@ -18,3 +18,9 @@ var searchBarViewController = function(view, model) {
         model.setSearchbarInput(selectedType, textInput);
     }
 }
+
+var dinnerSubtitleViewController = function(view, model) {
+    view.editDinnerButton.onclick = function() {
+        selectDish();
+    }
+}
