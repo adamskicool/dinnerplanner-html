@@ -12,5 +12,9 @@ var sideMenuViewController = function(view, model) {
 }
 
 var searchBarViewController = function(view, model) {
-  
+    view.searchButton.onclick = function() {
+        var textInput = view.textSelector.value;
+        var selectedType = view.dropDownSelector.value;
+        model.setSearchbarInput(selectedType, textInput);
+    }
 }
