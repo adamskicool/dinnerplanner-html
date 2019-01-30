@@ -23,6 +23,7 @@ var DinnerModel = function() {
     //for the search bar:
     var searchType = "Main Course";
     var searchInput = "";
+    var currentDish = "1";
 
 	this.setNumberOfGuests = function(num) {
 		numberOfGuests = num;
@@ -44,6 +45,15 @@ var DinnerModel = function() {
 
   this.getSearchType = function() {
     return searchType;
+  }
+
+  this.setCurrentDish = function(id) {
+    currentDish = id;
+    notifyObservers("activeDish");
+  }
+
+  this.getCurrentDish = function() {
+    return currentDish;
   }
 
 	//Returns the dish that is on the menu for selected type
@@ -101,18 +111,18 @@ var DinnerModel = function() {
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
         var newDish = this.getDish(id);
-        selectedDishes.forEach(function(dish) {
-            if(dish.type === newDish.type) {
-                removeDishFromMenu(dish.id);
+        for(var i=0; i<selectedDishes.length; i++) {
+            if(selectedDishes[i].type === newDish.type) {
+                removeDishFromMenu(selectedDishes[i].id);
             }
-        });
+        }
         selectedDishes.push(newDish);
-        notifyObservers("Lade till en dish!");
+        notifyObservers("addedDish");
 	}
 
 	//Removes dish from menu
 	var removeDishFromMenu = function(id) {
-		for(var i = 0; i < selectedDishes.length-1; i++) {
+		for(var i = 0; i < selectedDishes.length; i++) {
             if(selectedDishes[i].id === id) {
                 selectedDishes.splice(i, 1);
             }

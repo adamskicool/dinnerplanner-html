@@ -64,7 +64,7 @@ class sideMenuView{
         }
 
         update(model, details) {
-					if(details.includes("guests")) {
+					if(details.includes("guests") || details.includes("addedDish")) {
 						var dishes = "";
             var fullMenu = this.model.getFullMenu();
             for(var i = 0; i < fullMenu.length; i++) {

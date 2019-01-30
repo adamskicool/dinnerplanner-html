@@ -191,7 +191,7 @@ tillbakaknapp för filen dinneroverview.html.
   padding-top: 10px;
   border-bottom: 5px solid rgba(30,53,77);
 }
-.dishes-overview {
+.dishes-overview .dishes-overview-dishes{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

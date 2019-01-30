@@ -36,7 +36,7 @@ class searchBarView {
 			this.div.appendChild(this.searchButton);
 
 			this.findDish.append(this.div);
-            searchBarViewController(this, model);
+      searchBarViewController(this, model);
 		}
 
 		update(model, details){

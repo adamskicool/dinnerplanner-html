@@ -24,3 +24,29 @@ var dinnerSubtitleViewController = function(view, model) {
         selectDish();
     }
 }
+
+  var dishViewController = function(view, model) {
+    view.dishImage.onclick = function() {
+    viewDish();
+    model.setCurrentDish(view.id);
+    }
+  }
+
+  var dishMoreInfoViewController = function(view, model) {
+    view.backToSearch.onclick = function() {
+      selectDish();
+    }
+    view.addToMenu.onclick = function() {
+      model.addDishToMenu(model.getCurrentDish());
+    }
+  }
+
+  var dishOverviewViewController = function(view, model) {
+    view.printFullRecipeButton.onclick = function() {
+      viewDinnerPrintOut();
+    }
+  }
+
+  var dishPrintOutViewController = function(view, model) {
+    
+  }

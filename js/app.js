@@ -1,7 +1,6 @@
 $(function() {
 	//We instantiate our model
 	var dinnerModel = new DinnerModel();
-	dinnerModel.addDishToMenu(1);
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
 	 * use the $('someSelector') to search for elements in the whole HTML.
