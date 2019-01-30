@@ -7,7 +7,6 @@ var DinnerModel = function() {
     }
 
     var notifyObservers = function(changeDetails) {
-        alert("Notify");
         for(var i=0; i<observers.length; i++) {
             observers[i].update(this, changeDetails);
         }
@@ -16,7 +15,7 @@ var DinnerModel = function() {
 
 
 	//TODO Lab 1 implement the data structure that will hold number of guest
-    var numberOfGuests = 3;
+    var numberOfGuests = 1;
 	// and selected dishes for the dinner menu
     var selectedDishes = [];
 

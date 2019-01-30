@@ -7,6 +7,10 @@ var sideMenuViewController = function(view, model) {
     }
 
     view.confirm_button.onclick = function() {
-        alert("Confirm order!");
+        viewDinnerOverview();
     }
+}
+
+var searchBarViewController = function(view, model) {
+  
 }

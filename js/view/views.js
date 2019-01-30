@@ -26,18 +26,7 @@
                 dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+fullMenu[i].name+"</p><p class=\"alignright\">"+dish+"</p></h3>";
             }
             var menuprice = this.model.getTotalMenuPrice();
-//            var string = `
-//<h3>My Dinner</h3>
-//<button class="button" id="collapse-button">\uF8FF</button>
-//<div id="people-select">people
-//<input type="number" step="1" id="numberOfGuests">
-//</div>
-//<div id="column-names"><p style="text-align:left;">Dish name<span style="float: right;">Cost</span></p></div>
-//<div id="selected-dishes">` + dishes+ `</div>
-//<p id="total-cost">`+menuprice+`</p>
-//<div style="text-align:center"><button class="button" id="confirm-order">confirm order</button></div>`;
-//            this.myDinner.html(string);
-//
+
             //create the components.
             //titeln
             var title = document.createElement('h3');
@@ -60,13 +49,13 @@
             //column names
             var column_names = `<div id="column-names"><p style="text-align:left;">Dish name<span style="float: right;">Cost</span></p></div>`;
             //selected dishes
-            var selected_dishes = document.createElement('div');
-            selected_dishes.id = "selected-dishes";
-            selected_dishes.innertHTML= dishes;
+            this.selected_dishes = document.createElement('div');
+            this.selected_dishes.id = "selected-dishes";
+            this.selected_dishes.innerHTML= dishes;
             //totala kostnaden
-            var total_cost = document.createElement('p');
-            total_cost.id = "total-cost";
-            total_cost.innerHTML = menuprice;
+            this.total_cost = document.createElement('p');
+            this.total_cost.id = "total-cost";
+            this.total_cost.innerHTML = menuprice;
             //the div surrounding the confirm button
             var confirm_button_div = document.createElement('div');
             confirm_button_div.style = "text-align:center;";
@@ -81,8 +70,8 @@
             this.myDinner.append(collapsed_button);
             this.myDinner.append(people_select_div);
             this.myDinner.append(column_names);
-            this.myDinner.append(selected_dishes);
-            this.myDinner.append(total_cost);
+            this.myDinner.append(this.selected_dishes);
+            this.myDinner.append(this.total_cost);
             this.myDinner.append(confirm_button_div);
 
             sideMenuViewController(this, this.model);
@@ -91,19 +80,62 @@
         }
 
         update(model, details) {
-					if(details==="guests")
+					if(details.includes("guests")) {
+						var dishes = "";
+            var fullMenu = this.model.getFullMenu();
+            for(var i = 0; i < fullMenu.length; i++) {
+                var dish = this.model.getDishPrice(fullMenu[i]);
+                dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+fullMenu[i].name+"</p><p class=\"alignright\">"+dish+"</p></h3>";
+            }
+            var menuprice = this.model.getTotalMenuPrice();
+						this.selected_dishes.innerHTML= dishes;
+						this.total_cost.innerHTML=menuprice;
+					}
         }
     }
 
-	var searchBarView = function (container, model) {
-		var findDish = container.find("#find-a-dish");
-		var string = "\n      <div>\n        <input type=\"text\">\n        <select selected=\"All\">\n          <option>All</option>\n          <option>Main Course</option>\n          <option>Side Dish</option>\n          <option>Dessert</option>\n          <option>Appetizer</option>\n          <option>...</option>\n        </select>\n        <button class=\"button\" id=\"search\">Search</button>\n      </div>";
-		if(model.getFullMenu().length >0){
-			string = "Select Another" + string;
-		}else{
-			string = "Select A Dish" + string;
+	class searchBarView {
+		constructor(container, model){
+			this.findDish = container.find("#find-a-dish");
+			this.div = document.createElement("div");
+			this.textSelector = document.createElement("input");
+			this.textSelector.type = "text";
+			this.dropDownSelector = document.createElement("select");
+			this.dropDownSelector.selected = "All";
+			this.option1 = document.createElement("option");
+			this.option1.innerHTML = "All";
+			this.option2 = document.createElement("option");
+			this.option2.innerHTML = "Main Course";
+			this.option3 = document.createElement("option");
+			this.option3.innerHTML = "Side Dish";
+			this.option4 = document.createElement("option");
+			this.option4.innerHTML = "Dessert";
+			this.option5 = document.createElement("option");
+			this.option5.innerHTML = "Appetizer";
+			this.searchButton = document.createElement("button");
+			this.searchButton.classList.add("button");
+			this.searchButton.id = "search";
+			this.searchButton.innerHTML = "Search";
+			this.dropDownSelector.appendChild(this.option1);
+			this.dropDownSelector.appendChild(this.option2);
+			this.dropDownSelector.appendChild(this.option3);
+			this.dropDownSelector.appendChild(this.option4);
+			this.dropDownSelector.appendChild(this.option5);
+			if(model.getFullMenu().length >0){
+				this.div.append("Select Another");
+			}else{
+				this.div.append("Select A Dish");
+			}
+			this.div.appendChild(document.createElement("br"));
+			this.div.appendChild(this.textSelector);
+			this.div.appendChild(this.dropDownSelector);
+			this.div.appendChild(this.searchButton);
+
+			this.findDish.append(this.div);
 		}
-		findDish.html(string);
+		update(model, details){
+
+		}
 	}
 
 	var dishesView = function (container, model) {
