@@ -13,17 +13,17 @@
         }
     }
 
-	
+
     class sideMenuView{
         constructor(container, model) {
             this.myDinner = container.find("#my-dinner");
             this.model = model;
-            
+
             var dishes = "";
             var fullMenu = this.model.getFullMenu();
             for(var i = 0; i < fullMenu.length; i++) {
                 var dish = this.model.getDishPrice(fullMenu[i]);
-                dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+fullMenu[i].name+"</p><p class=\"alignright\">"+dish+"</p></h3>";   
+                dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+fullMenu[i].name+"</p><p class=\"alignright\">"+dish+"</p></h3>";
             }
             var menuprice = this.model.getTotalMenuPrice();
 //            var string = `
@@ -37,7 +37,7 @@
 //<p id="total-cost">`+menuprice+`</p>
 //<div style="text-align:center"><button class="button" id="confirm-order">confirm order</button></div>`;
 //            this.myDinner.html(string);
-//            
+//
             //create the components.
             //titeln
             var title = document.createElement('h3');
@@ -53,6 +53,8 @@
             this.people_select_button = document.createElement("input");
             this.people_select_button.type = "number";
             this.people_select_button.step = "1";
+						this.people_select_button.min = "1";
+						this.people_select_button.value = "1";
             this.people_select_button.id = "numberOfGuests";
             people_select_div.appendChild(this.people_select_button);
             //column names
@@ -73,7 +75,7 @@
             this.confirm_button.id = "confirm-order";
             this.confirm_button.innerHTML = "confirm order";
             confirm_button_div.appendChild(this.confirm_button);
-            
+
             //add the components to the html file.
             this.myDinner.append(title);
             this.myDinner.append(collapsed_button);
@@ -82,13 +84,14 @@
             this.myDinner.append(selected_dishes);
             this.myDinner.append(total_cost);
             this.myDinner.append(confirm_button_div);
-            
+
             sideMenuViewController(this, this.model);
             //add me as an observer! YAY...
             model.addObserver(this);
         }
-        
-        update() {
+
+        update(model, details) {
+					if(details==="guests")
         }
     }
 

@@ -15,10 +15,11 @@ $(function() {
 	 new dishesView($(".select-dish-grid"), dinnerModel);
 	 new dishMoreInfoView($(".view-dish-grid"), dinnerModel);
 	 new dinnerSubtitle($(".my-dinner-subtitle"), dinnerModel);
-     new dishOverviewView($(".dishes-overview"), dinnerModel);
+	 new dishOverviewView($(".dishes-overview"), dinnerModel);
 	 new dishPrintOutView($(".dish-print-out"), dinnerModel);
-    
-    
+	
+
+
      startMenu();
 });
 

@@ -1,10 +1,11 @@
 var sideMenuViewController = function(view, model) {
     //onClick=\"viewDinnerOverview()\"
-    view.people_select_button.onchange = function() {
+    view.people_select_button.onchange = function(event) {
         //gör något med knappen!
-        alert("Something changed");
+        var value = event.target.value;
+        model.setNumberOfGuests(value);
     }
-    
+
     view.confirm_button.onclick = function() {
         alert("Confirm order!");
     }
