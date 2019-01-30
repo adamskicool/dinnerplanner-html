@@ -10,18 +10,18 @@ class searchBarView {
 			this.dropDownSelector.selected = "Main Course";
 			this.option2 = document.createElement("option");
 			this.option2.innerHTML = "Main Course";
-			this.option3 = document.createElement("option");
-			this.option3.innerHTML = "Side Dish";
+			this.option2.id = "main dish";
 			this.option4 = document.createElement("option");
 			this.option4.innerHTML = "Dessert";
+			this.option4.id = "dessert";
 			this.option5 = document.createElement("option");
 			this.option5.innerHTML = "Appetizer";
+			this.option5.id = "starter";
 			this.searchButton = document.createElement("button");
 			this.searchButton.classList.add("button");
 			this.searchButton.id = "search";
 			this.searchButton.innerHTML = "Search";
 			this.dropDownSelector.appendChild(this.option2);
-			this.dropDownSelector.appendChild(this.option3);
 			this.dropDownSelector.appendChild(this.option4);
 			this.dropDownSelector.appendChild(this.option5);
 			if(model.getFullMenu().length >0){
@@ -38,7 +38,7 @@ class searchBarView {
 			this.findDish.append(this.div);
             searchBarViewController(this, model);
 		}
-        
+
 		update(model, details){
             if(detail.includes("dishes")) {
                 if(model.getFullMenu().length > 0){

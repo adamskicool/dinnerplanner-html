@@ -18,10 +18,10 @@ var DinnerModel = function() {
     var numberOfGuests = 1;
 	// and selected dishes for the dinner menu
     var selectedDishes = [];
-    
-    
+
+
     //for the search bar:
-    var searchType = "All";
+    var searchType = "Main Course";
     var searchInput = "";
 
 	this.setNumberOfGuests = function(num) {
@@ -38,8 +38,14 @@ var DinnerModel = function() {
         searchInput = text;
         notifyObservers("searchbar");
     }
-    
-    
+  this.getSearchInput = function() {
+    return searchInput;
+  }
+
+  this.getSearchType = function() {
+    return searchType;
+  }
+
 	//Returns the dish that is on the menu for selected type
 	this.getSelectedDish = function(type) {
 		selectedDishes.forEach(function(element) {
