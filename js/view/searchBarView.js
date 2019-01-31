@@ -8,6 +8,9 @@ class searchBarView {
 			this.textSelector.type = "text";
 			this.dropDownSelector = document.createElement("select");
 			this.dropDownSelector.selected = "Main Course";
+			this.option1 = document.createElement("option");
+			this.option1.innerHTML = "All";
+			this.option1.id = "all";
 			this.option2 = document.createElement("option");
 			this.option2.innerHTML = "Main Course";
 			this.option2.id = "main dish";
@@ -21,6 +24,7 @@ class searchBarView {
 			this.searchButton.classList.add("button");
 			this.searchButton.id = "search";
 			this.searchButton.innerHTML = "Search";
+			this.dropDownSelector.appendChild(this.option1);
 			this.dropDownSelector.appendChild(this.option2);
 			this.dropDownSelector.appendChild(this.option4);
 			this.dropDownSelector.appendChild(this.option5);

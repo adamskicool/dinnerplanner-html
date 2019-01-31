@@ -18,8 +18,6 @@ $(function() {
 	 new dishOverviewView($(".dishes-overview"), dinnerModel);
 	 new dishPrintOutView($(".dish-print-out"), dinnerModel);
 
-
-
      startMenu();
 });
 
