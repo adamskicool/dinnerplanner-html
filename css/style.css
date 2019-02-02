@@ -288,6 +288,7 @@ Grid och style för dinnerprintout.html
   .dish {
     height: 200px;
     width: 200px;
+    overflow-y: hidden;
   }
 
   /**

@@ -143,6 +143,7 @@ var DinnerModel = function() {
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
+<<<<<<< HEAD
         alert("Getting all dishes");
         var parameters = [["number", 10],["query", filter],["type", type]];
         var URL = appendParametersURL(getDishes, parameters);
@@ -172,6 +173,30 @@ var DinnerModel = function() {
 //		}
 //	  	return dish.type == type && found;
 //	  });
+=======
+      return dishes.filter(function(dish) {
+  		var found = true;
+  		if(filter){
+  			found = false;
+  			dish.ingredients.forEach(function(ingredient) {
+  				if(ingredient.name.indexOf(filter)!=-1) {
+  					found = true;
+  				}
+  			});
+  			if(dish.name.indexOf(filter) != -1)
+  			{
+  				found = true;
+  			}
+  		}
+        if(type === "all") {
+          return found;
+        } else {
+          return dish.type == type && found;
+        }
+
+  	  });
+
+>>>>>>> ebd1f113c09d73c486a367dc75047ea48ea00c2f
 	}
 
 	//function that returns a dish of specific ID

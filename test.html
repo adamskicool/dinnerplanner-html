@@ -15,12 +15,36 @@
     </div>
   </body>
   <script>
-        var custom_div = document.createElement('div');
-        custom_div.classList.add("test");
-        custom_div.type = "number";
-        var people_select_button = document.createElement("input");
-        people_select_button.type = "number";
-      people_select_button.step = "1";
-        document.getElementById("test").appendChild(people_select_button);
-    </script>
+      var api_key = "3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767";
+      var div = document.getElementById("test");
+      
+      
+      var URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
+      var parameters = [["number", 3], ["query", "ice"]];
+      
+      fetch(appendParametersURL(URL, parameters), {
+          headers: {
+              'X-Mashape-Key' : api_key,
+              'Accept' : "application/json"
+          }
+      }).then(respons => respons.json())
+      .then(data => div.innerHTML = data.number)
+      
+    
+    
+      
+      
+      function appendParametersURL(URL, parameters) {
+          //parameters ≈ {[number, 3], [query, "ice"]}
+          var newURL = URL + "?";
+          for(var i = 0; i < parameters.length; i++) {
+              if(i < parameters.length-1) {
+                    newURL += parameters[i][0] + "=" + parameters[i][1] + "&";   
+              } else {
+                  newURL += parameters[i][0] + "=" + parameters[i][1];
+              }
+          }
+          return newURL;
+      }  
+  </script>
 </html>
