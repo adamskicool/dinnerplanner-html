@@ -1,5 +1,10 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
+    //URLS
+    var getDishes = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
+    var api_key = "3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767";
+    
+    
     var observers = [];
 
     this.addObserver = function(observer) {
@@ -128,27 +133,45 @@ var DinnerModel = function() {
             }
         }
 	}
+    
+    this.svar = "";
+    this.getData = function () {
+        return this.svar;
+    }
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
-	  return dishes.filter(function(dish) {
-		var found = true;
-		if(filter){
-			found = false;
-			dish.ingredients.forEach(function(ingredient) {
-				if(ingredient.name.indexOf(filter)!=-1) {
-					found = true;
-				}
-			});
-			if(dish.name.indexOf(filter) != -1)
-			{
-				found = true;
-			}
-		}
-	  	return dish.type == type && found;
-	  });
+        alert("Getting all dishes");
+        var parameters = [["number", 10],["query", filter],["type", type]];
+        var URL = appendParametersURL(getDishes, parameters);
+        
+        
+        var respons = fetch(URL, {
+              headers: {
+                  'X-Mashape-Key' : api_key,
+                  'Accept' : "application/json"
+              }
+          }).then(respons => respons.json())
+        //returnera en promis som viewen sen hanterar.
+        return respons;
+//	  return dishes.filter(function(dish) {
+//		var found = true;
+//		if(filter){
+//			found = false;
+//			dish.ingredients.forEach(function(ingredient) {
+//				if(ingredient.name.indexOf(filter)!=-1) {
+//					found = true;
+//				}
+//			});
+//			if(dish.name.indexOf(filter) != -1)
+//			{
+//				found = true;
+//			}
+//		}
+//	  	return dish.type == type && found;
+//	  });
 	}
 
 	//function that returns a dish of specific ID
@@ -159,6 +182,23 @@ var DinnerModel = function() {
 			}
 		}
 	}
+    
+    
+    /**
+    Append the parameters in the list to the URL correctly...
+    **/
+    function appendParametersURL(URL, parameters) {
+          //parameters ≈ {[number, 3], [query, "ice"]}
+          var newURL = URL + "?";
+          for(var i = 0; i < parameters.length; i++) {
+              if(i < parameters.length-1) {
+                    newURL += parameters[i][0] + "=" + parameters[i][1] + "&";   
+              } else {
+                  newURL += parameters[i][0] + "=" + parameters[i][1];
+              }
+          }
+          return newURL;
+      }  
 
 
 	// the dishes variable contains an array of all the
