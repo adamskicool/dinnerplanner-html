@@ -1,10 +1,11 @@
 class dishesView {
 	constructor (container, model) {
-		this.model = model;
+		this.container = container;
+        this.model = model;
 		this.dishes = container.find("#dishes");
-		model.getEntireMenu().forEach(function(dish) {
-            new dishView(dishes, model, dish);
-        });
+//		model.getEntireMenu().forEach(function(dish) {
+//            new dishView(dishes, model, dish);
+//        });
 		model.addObserver(this);
 	}
     
@@ -12,12 +13,15 @@ class dishesView {
 		if(details.includes("searchbar")){
 			this.dishes.html("");
             var dishes = this.dishes;
+            var loading_gif = document.getElementById("loading");
             //vissa loading-gif ...
+            loading_gif.style.display = "flex";
             
             //ladda hem informationen
             this.model.getAllDishes(this.model.getSearchType(), this.model.getSearchInput())
             //gå igenom resultaten:
             .then(data => data.results.forEach(function(dish) {
+                loading_gif.style.display = "none";
                 new dishView(dishes, model, dish);
                 console.log(dish);
             }))

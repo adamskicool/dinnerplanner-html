@@ -10,7 +10,7 @@ class searchBarView {
 			this.dropDownSelector.selected = "Main Course";
 			this.option1 = document.createElement("option");
 			this.option1.innerHTML = "All";
-			this.option1.id = "all";
+			this.option1.id = "";
 			this.option2 = document.createElement("option");
 			this.option2.innerHTML = "Main Course";
 			this.option2.id = "main dish";

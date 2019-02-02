@@ -143,8 +143,7 @@ var DinnerModel = function() {
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
-        alert("Getting all dishes");
-        var parameters = [["number", 10],["query", filter],["type", type]];
+        var parameters = [["number", 20],["query", filter],["type", type]];
         var URL = appendParametersURL(getDishes, parameters);
         
         

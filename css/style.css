@@ -144,6 +144,12 @@ Styla my dinner delen av gridden.
 /**
 Styla dishes delen av gridden.
 **/
+.loading {
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    grid-area: c;
+}
 .dishes {
   grid-area: c;
   flex-direction: row;
