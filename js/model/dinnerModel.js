@@ -2,6 +2,7 @@
 var DinnerModel = function() {
     //URLS
     var getDishes = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
+    var getDish = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/menuItems/";
     var api_key = "3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767";
     
     
@@ -143,7 +144,7 @@ var DinnerModel = function() {
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
-        var parameters = [["number", 20],["query", filter],["type", type]];
+        var parameters = [["number", 30],["query", filter],["type", type]];
         var URL = appendParametersURL(getDishes, parameters);
         
         
@@ -155,33 +156,15 @@ var DinnerModel = function() {
           }).then(respons => respons.json())
         //returnera en promis som viewen sen hanterar.
         return respons;
-        
-//      return dishes.filter(function(dish) {
-//  		var found = true;
-//  		if(filter){
-//  			found = false;
-//  			dish.ingredients.forEach(function(ingredient) {
-//  				if(ingredient.name.indexOf(filter)!=-1) {
-//  					found = true;
-//  				}
-//  			});
-//  			if(dish.name.indexOf(filter) != -1)
-//  			{
-//  				found = true;
-//  			}
-//  		}
-//        if(type === "all") {
-//          return found;
-//        } else {
-//          return dish.type == type && found;
-//        }
-//
-//  	  });
 	}
 
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
-	  for(key in dishes){
+//	    var url = getDish + id;
+//        return fetch(url)
+//        .then(respons => respons.json());
+        
+        for(key in dishes){
 			if(dishes[key].id == id) {
 				return dishes[key];
 			}
