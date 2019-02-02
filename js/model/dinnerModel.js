@@ -3,6 +3,7 @@ var DinnerModel = function() {
     //URLS
     var getDishes = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
     var getDish = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/menuItems/";
+    var getRecipe = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/{id}/information";
     var api_key = "3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767";
     
     
@@ -163,7 +164,7 @@ var DinnerModel = function() {
 //	    var url = getDish + id;
 //        return fetch(url)
 //        .then(respons => respons.json());
-        
+//        
         for(key in dishes){
 			if(dishes[key].id == id) {
 				return dishes[key];
@@ -171,6 +172,18 @@ var DinnerModel = function() {
 		}
 	}
     
+    
+    //function that returns a dish of specific ID
+	this.getDish2 = function (id) {
+        var url = getRecipe.replace("{id}", id);
+        return fetch(url , {
+              headers: {
+                  'X-Mashape-Key' : api_key,
+                  'Accept' : "application/json"
+              }
+        })
+        .then(respons => respons.json())
+	}
     
     /**
     Append the parameters in the list to the URL correctly...

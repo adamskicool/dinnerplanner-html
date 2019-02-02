@@ -27,8 +27,8 @@ var dinnerSubtitleViewController = function(view, model) {
 
   var dishViewController = function(view, model) {
     view.dishImage.onclick = function() {
-    viewDish();
-    model.setCurrentDish(view.id);
+        model.setCurrentDish(view.id);
+        viewDish();
     }
   }
 
