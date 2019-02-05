@@ -128,7 +128,7 @@ var DinnerModel = function() {
         selectedDishes.forEach(function(dish) {
             price = price + dish.pricePerServing*numberOfGuests;
         })
-        return price;
+        return price.toFixed(2);
 	}
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
