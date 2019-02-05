@@ -7,8 +7,15 @@ class sideMenuView{
             var fullMenu = this.model.getFullMenu();
             for(var i = 0; i < fullMenu.length; i++) {
                 var dish = this.model.getDishPrice(fullMenu[i]);
-                dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+fullMenu[i].title+"</p><p class=\"alignright\">"+dish+"</p></h3>";
+                var title = fullMenu[i].title;
+                //Check so the title is not too long
+                if(title.length > 6){
+                  title = title.substr(0,7);
+                  title += "...";
+                }
+                dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+title+"</p><p class=\"alignright\">"+dish+"</p></h3>";
             }
+            //Total price
             var menuprice = this.model.getTotalMenuPrice();
 
             //create the components.
@@ -58,6 +65,7 @@ class sideMenuView{
             this.myDinner.append(this.total_cost);
             this.myDinner.append(confirm_button_div);
 
+            //Add this view to view controller
             sideMenuViewController(this, this.model);
             //add me as an observer! YAY...
             model.addObserver(this);
@@ -70,6 +78,7 @@ class sideMenuView{
             for(var i = 0; i < fullMenu.length; i++) {
                 var dish = this.model.getDishPrice(fullMenu[i]);
                 var title = fullMenu[i].title;
+                //Make sure the title is not too long
                 if(title.length > 6){
                   title = title.substr(0,7);
                   title += "...";
