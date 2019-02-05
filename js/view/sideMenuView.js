@@ -69,7 +69,12 @@ class sideMenuView{
             var fullMenu = this.model.getFullMenu();
             for(var i = 0; i < fullMenu.length; i++) {
                 var dish = this.model.getDishPrice(fullMenu[i]);
-                dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+fullMenu[i].title+"</p><p class=\"alignright\">"+dish+"</p></h3>";
+                var title = fullMenu[i].title;
+                if(title.length > 6){
+                  title = title.substr(0,7);
+                  title += "...";
+                }
+                dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+title+"</p><p class=\"alignright\">"+dish+"</p></h3>";
             }
             var menuprice = this.model.getTotalMenuPrice();
 						this.selected_dishes.innerHTML= dishes;

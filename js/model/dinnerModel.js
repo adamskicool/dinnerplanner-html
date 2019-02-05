@@ -5,15 +5,15 @@ var DinnerModel = function() {
     var getDish = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/menuItems/{id}";
     var getRecipe = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/{id}/information";
     var api_key = "3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767";
-    
+
     const API_KEY_HEADERS = {
               headers: {
                   'X-Mashape-Key' : api_key,
                   'Accept' : "application/json"
               }
         };
-    
-    
+
+
     var observers = [];
 
     this.addObserver = function(observer) {
@@ -45,19 +45,19 @@ var DinnerModel = function() {
         notifyObservers("guests");
 	}
 
-    
+
     //KLAR
 	this.getNumberOfGuests = function() {
         return numberOfGuests;
 	}
-    
+
     //KLAR
     this.setSearchbarInput = function(type, text) {
         searchType = type;
         searchInput = text;
         notifyObservers("searchbar");
     }
-    
+
   //KLAR
   this.getSearchInput = function() {
     return searchInput;
@@ -73,7 +73,7 @@ var DinnerModel = function() {
     currentDish = id;
     notifyObservers("activeDish");
   }
-  
+
   //KLAR
   this.getCurrentDish = function() {
     return currentDish;
@@ -113,13 +113,13 @@ var DinnerModel = function() {
 //        return ingredients;
 //	}
 
-      
+
       //Return the price of one dish
       this.getDishPrice = function(dish) {
 //        dish.ingredients.forEach(function(ingredient) {
 //          price = price + ingredient.price * numberOfGuests;
 //        });
-        return dish.pricePerServing * this.getNumberOfGuests();
+        return (dish.pricePerServing * this.getNumberOfGuests()).toFixed(2);
       }
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
@@ -136,10 +136,10 @@ var DinnerModel = function() {
 	this.addDishToMenu = function(id) {
         var newDish_promise = this.getDish(id);
         newDish_promise.then(dish => addDish(dish))
-        
+
         var addDish = function(dish) {
             selectedDishes.push(dish)
-            notifyObservers("addedDish");   
+            notifyObservers("addedDish");
         }
 	}
 
@@ -151,7 +151,7 @@ var DinnerModel = function() {
             }
         }
 	}
-    
+
     this.svar = "";
     this.getData = function () {
         return this.svar;
@@ -177,22 +177,22 @@ var DinnerModel = function() {
 	    var url = getRecipe.replace("{id}", id);
         return fetch(url, API_KEY_HEADERS)
         .then(respons => respons.json());
-        
+
 //        for(key in dishes){
 //			if(dishes[key].id == id) {
 //				return dishes[key];
 //			}
 //		}
 	}
-    
-    
+
+
 //    //function that returns a dish of specific ID
 //	this.getDish2 = function (id) {
 //        var url = getRecipe.replace("{id}", id);
 //        return fetch(url , API_KEY_HEADERS)
 //        .then(respons => respons.json())
 //	}
-    
+
     /**
     Append the parameters in the list to the URL correctly...
     **/
@@ -201,13 +201,13 @@ var DinnerModel = function() {
           var newURL = URL + "?";
           for(var i = 0; i < parameters.length; i++) {
               if(i < parameters.length-1) {
-                    newURL += parameters[i][0] + "=" + parameters[i][1] + "&";   
+                    newURL += parameters[i][0] + "=" + parameters[i][1] + "&";
               } else {
                   newURL += parameters[i][0] + "=" + parameters[i][1];
               }
           }
           return newURL;
-      }  
+      }
 
 
 	// the dishes variable contains an array of all the
