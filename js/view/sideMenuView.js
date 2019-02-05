@@ -7,7 +7,7 @@ class sideMenuView{
             var fullMenu = this.model.getFullMenu();
             for(var i = 0; i < fullMenu.length; i++) {
                 var dish = this.model.getDishPrice(fullMenu[i]);
-                dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+fullMenu[i].name+"</p><p class=\"alignright\">"+dish+"</p></h3>";
+                dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+fullMenu[i].title+"</p><p class=\"alignright\">"+dish+"</p></h3>";
             }
             var menuprice = this.model.getTotalMenuPrice();
 
@@ -69,7 +69,7 @@ class sideMenuView{
             var fullMenu = this.model.getFullMenu();
             for(var i = 0; i < fullMenu.length; i++) {
                 var dish = this.model.getDishPrice(fullMenu[i]);
-                dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+fullMenu[i].name+"</p><p class=\"alignright\">"+dish+"</p></h3>";
+                dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+fullMenu[i].title+"</p><p class=\"alignright\">"+dish+"</p></h3>";
             }
             var menuprice = this.model.getTotalMenuPrice();
 						this.selected_dishes.innerHTML= dishes;

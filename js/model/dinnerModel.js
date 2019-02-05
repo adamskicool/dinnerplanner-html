@@ -39,84 +39,94 @@ var DinnerModel = function() {
     var searchInput = "";
     var currentDish = "1";
 
+    //KLAR
 	this.setNumberOfGuests = function(num) {
 		numberOfGuests = num;
         notifyObservers("guests");
 	}
 
+    
+    //KLAR
 	this.getNumberOfGuests = function() {
         return numberOfGuests;
 	}
-
+    
+    //KLAR
     this.setSearchbarInput = function(type, text) {
         searchType = type;
         searchInput = text;
         notifyObservers("searchbar");
     }
+    
+  //KLAR
   this.getSearchInput = function() {
     return searchInput;
   }
 
+  //KLAR
   this.getSearchType = function() {
     return searchType;
   }
 
+  //KLAR
   this.setCurrentDish = function(id) {
     currentDish = id;
     notifyObservers("activeDish");
   }
-
+  
+  //KLAR
   this.getCurrentDish = function() {
     return currentDish;
   }
 
-	//Returns the dish that is on the menu for selected type
-	this.getSelectedDish = function(type) {
-		selectedDishes.forEach(function(element) {
-           if(element.type === type) {
-               return element;
-           } else {
-               return null;
-           }
-        });
-	}
+//	//Returns the dish that is on the menu for selected type
+//	this.getSelectedDish = function(type) {
+//		selectedDishes.forEach(function(element) {
+//           if(element.type === type) {
+//               return element;
+//           } else {
+//               return null;
+//           }
+//        });
+//	}
 
+    //KLAR
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
         return selectedDishes;
 	}
 
-    //Return entire menu
-    this.getEntireMenu = function() {
-        return dishes;
-    }
+//    //Return entire menu
+//    this.getEntireMenu = function() {
+//        return dishes;
+//    }
 
-	//Returns all ingredients for all the dishes on the menu.
-    //TODO: får det finnas flera av en ingrediens?
-	this.getAllIngredients = function() {
-		var ingredients = [];
-        selectedDishes.forEach(function(dish) {
-            dish.ingredients.forEach(function(ingredient) {
-                ingredients.push(ingredient);
-            });
-        });
-        return ingredients;
-	}
+//	//Returns all ingredients for all the dishes on the menu.
+//    //TODO: får det finnas flera av en ingrediens?
+//	this.getAllIngredients = function() {
+//		var ingredients = [];
+//        selectedDishes.forEach(function(dish) {
+//            dish.ingredients.forEach(function(ingredient) {
+//                ingredients.push(ingredient);
+//            });
+//        });
+//        return ingredients;
+//	}
 
+      
       //Return the price of one dish
       this.getDishPrice = function(dish) {
-        var price = 0;
-        dish.ingredients.forEach(function(ingredient) {
-          price = price + ingredient.price * numberOfGuests;
-        });
-        return price;
+//        dish.ingredients.forEach(function(ingredient) {
+//          price = price + ingredient.price * numberOfGuests;
+//        });
+        return dish.pricePerServing * this.getNumberOfGuests();
       }
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
 		var price = 0;
-        this.getAllIngredients().forEach(function(ingredient) {
-            price = price + ingredient.price*numberOfGuests;
+        selectedDishes.forEach(function(dish) {
+            price = price + dish.pricePerServing*numberOfGuests;
         })
         return price;
 	}
@@ -124,14 +134,13 @@ var DinnerModel = function() {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-        var newDish = this.getDish(id);
-        for(var i=0; i<selectedDishes.length; i++) {
-            if(selectedDishes[i].type === newDish.type) {
-                removeDishFromMenu(selectedDishes[i].id);
-            }
+        var newDish_promise = this.getDish(id);
+        newDish_promise.then(dish => addDish(dish))
+        
+        var addDish = function(dish) {
+            selectedDishes.push(dish)
+            notifyObservers("addedDish");   
         }
-        selectedDishes.push(newDish);
-        notifyObservers("addedDish");
 	}
 
 	//Removes dish from menu

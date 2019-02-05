@@ -12,7 +12,17 @@ class dishPrintOutView {
 		if(details.includes("addedDish")){
 			this.container.html("");
 			for(var i = 0; i<this.fullMenu.length;i++){
-				this.container.append("<div class=\"dish-print-out-grid\"><div class=\"print-out-image\"><img src=\"images/" + this.fullMenu[i].image +"\"></div><div class=\"print-out-description\"><h3>" + this.fullMenu[i].name + "</h3><p>" + this.fullMenu[i].type +"</p></div><div class=\"print-out-preparation\"><h3>Preparation</h3><p>" + this.fullMenu[i].description+"</p></div></div>");
+                var types = "";
+                var preparation = "";
+                for(var j = 0; j < this.fullMenu[i].dishTypes.length; j++){
+                    types += this.fullMenu[i].dishTypes[j];
+                }
+                for(var j = 0; j < this.fullMenu[i].analyzedInstructions[0].steps.length; j++){
+                    preparation += "<p>" + this.fullMenu[i].analyzedInstructions[0].steps[j].number + ". " + this.fullMenu[i].analyzedInstructions[0].steps[j].step + "</p>";
+                }
+                
+                
+				this.container.append("<div class=\"dish-print-out-grid\"><div class=\"print-out-image\"><img src=\"" + this.fullMenu[i].image +"\"></div><div class=\"print-out-description\"><h3>" + this.fullMenu[i].title + "</h3><p>" + types +"</p></div><div class=\"print-out-preparation\"><h3>Preparation</h3>" + preparation + "</div></div>");
 			}
 		}
 	}

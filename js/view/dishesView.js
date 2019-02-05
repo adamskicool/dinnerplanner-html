@@ -34,11 +34,15 @@ class dishesView {
             this.model.getAllDishes(this.model.getSearchType(), this.model.getSearchInput())
             //gå igenom resultaten:
             .then(data => loop(this, this.model, data.results))
-            .catch(
+            .catch(error =>
             //visa felmeddelande: "server error, please try aggain shortly".
+                errorMessage()
             )
             
-            
+            var errorMessage = function() {
+                loading_gif.style.display = "none";
+                alert("oops something went wrong, please try again!");
+            }
 //            var dishes = this.model.getAllDishes(this.model.getSearchType(), this.model.getSearchInput());
 //            console.log(dishes);
 //			this.dishes.html("");

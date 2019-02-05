@@ -21,7 +21,7 @@ class dishOverviewView {
       var fullMenu = this.model.getFullMenu();
       for(var i=0; i<fullMenu.length;i++){
     		var price = this.model.getDishPrice(fullMenu[i]);
-    		this.dishes.prepend("<div class=\"dish-overview\" style=\"background-image: url('./images/" + fullMenu[i].image+"');\"><div class=\"dish-name\">" + fullMenu[i].name + "</div><p class=\"dish-price\">" + price +" SEK</p></div>")
+    		this.dishes.prepend("<div class=\"dish-overview\" style=\"background-image: url('" + fullMenu[i].image+"');\"><div class=\"dish-name\">" + fullMenu[i].title + "</div><p class=\"dish-price\">" + price +" SEK</p></div>")
       }
       this.totalCost.append("<h3>" + this.model.getTotalMenuPrice()+ " SEK</h3>");
     }

@@ -21,31 +21,35 @@ class dishMoreInfoView {
 
 	update(model, details){
 		if(details.includes("activeDish")){
-			this.dishInfo.html("");
+			//clear the previous information
+            this.dishInfo.html("");
 			this.ingredients.html("");
 			this.preparation.html("");
 			
             //detta är vad vi vill göra med datan från promisen.
             var dishInfo = function(view, model, dish) {
-                console.log(dish);
                 var numberOfGuests = model.getNumberOfGuests();
+                //skapa en sträng med information om receptet:
+                //1. Bild
+                //2. Receptets typer (t.ex. main course, dessert)
                 var s = "<h3>" + dish.title +"</h3><img src=\"" + dish.image+"\">";
                 for(var i = 0; i < dish.dishTypes.length; i++) {
                     s += "<p>" +dish.dishTypes[i] +"</p>";
                 }
-                
                 view.dishInfo.prepend(s);
+                //lägg till knappen.
                 view.dishInfo.append(view.backToSearch);
                 
-                
+                //gå igenom ingredienserna och lägg till dessa i ingrediens div:en.
                 var ingredients = dish.extendedIngredients;
                 for(var i=0; i < ingredients.length; i++) {
-                    console.log(ingredients[i].pricePerServing);
                     view.ingredients.prepend("<p>" + ingredients[i].measures.metric.amount + " "+ ingredients[i].measures.metric.unitShort+ " "+ingredients[i].name + "</p>");
                 }
                 view.ingredients.prepend("<h3>Ingredients for " +numberOfGuests+ " people:</h3>");
+                //lägg till knappen för att lägga till receptet på menyn.
                 view.ingredients.append(view.addToMenu);
                 
+                //lägg till instruktionerna för hur man lagar receptet.
                 var instructions = dish.analyzedInstructions[0].steps;
                 view.preparation.append("<h3>Preparation</h3>");
                 for(var i = 0; i < instructions.length; i++) {
