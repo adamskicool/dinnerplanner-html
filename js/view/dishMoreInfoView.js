@@ -15,7 +15,7 @@ class dishMoreInfoView {
 			this.addToMenu.innerHTML = "Add to menu";
 			this.addToMenu.id = "addToMenu";
 			model.addObserver(this);
-			this.update(model,"activeDish");
+			//this.update(model,"activeDish");
 			dishMoreInfoViewController(this, model);
 	}
 
@@ -24,16 +24,40 @@ class dishMoreInfoView {
 			this.dishInfo.html("");
 			this.ingredients.html("");
 			this.preparation.html("");
-			var dish = this.model.getDish(this.model.getCurrentDish());
-			var numberOfGuests = this.model.getNumberOfGuests();
-			this.dishInfo.append(this.backToSearch);
-			this.dishInfo.prepend("<h3>" + dish.name +"</h3><img src=\"images/" + dish.image+"\"><p>" +dish.type +"</p>");
-			for(var i=0; i<dish.ingredients.length; i++) {
-				this.ingredients.prepend("<p>" + dish.ingredients[i].quantity + " "+ dish.ingredients[i].unit+ " "+dish.ingredients[i].name + " SEK "+ dish.ingredients[i].price*numberOfGuests + "</p>");
-			}
-			this.ingredients.prepend("<h3>Ingredients for " +numberOfGuests+ " people:</h3>");
-			this.ingredients.append(this.addToMenu);
-			this.preparation.append("<h3>Preparation</h3><p>"+dish.description+"</p>");
+			
+            //detta är vad vi vill göra med datan från promisen.
+            var dishInfo = function(view, model, dish) {
+                console.log(dish);
+                var numberOfGuests = model.getNumberOfGuests();
+                var s = "<h3>" + dish.title +"</h3><img src=\"" + dish.image+"\">";
+                for(var i = 0; i < dish.dishTypes.length; i++) {
+                    s += "<p>" +dish.dishTypes[i] +"</p>";
+                }
+                
+                view.dishInfo.prepend(s);
+                view.dishInfo.append(view.backToSearch);
+                
+                
+                var ingredients = dish.extendedIngredients;
+                for(var i=0; i < ingredients.length; i++) {
+                    console.log(ingredients[i].pricePerServing);
+                    view.ingredients.prepend("<p>" + ingredients[i].measures.metric.amount + " "+ ingredients[i].measures.metric.unitShort+ " "+ingredients[i].name + "</p>");
+                }
+                view.ingredients.prepend("<h3>Ingredients for " +numberOfGuests+ " people:</h3>");
+                view.ingredients.append(view.addToMenu);
+                
+                var instructions = dish.analyzedInstructions[0].steps;
+                view.preparation.append("<h3>Preparation</h3>");
+                for(var i = 0; i < instructions.length; i++) {
+                    view.preparation.append("<p>" + instructions[i].number + ". " +instructions[i].step+"</p>");   
+                }
+            }
+            
+            //dish är en promise.
+            var data = this.model.getDish(this.model.getCurrentDish());
+            data.then(dish => dishInfo(this, this.model, dish))
+            .catch()
+
 		}
 	}
 }

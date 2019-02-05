@@ -17,14 +17,23 @@ class dishesView {
             //vissa loading-gif ...
             loading_gif.style.display = "flex";
             
+            
+            //gå igenom alla alla dishes, lägg till ny dish-view.
+            var loop = function(dishesView, model, dishes) {
+                //console.log(model);
+                for(var i = 0; i < dishes.length; i++) {
+                    loading_gif.style.display = "none";
+                    new dishView(dishesView.dishes, model, dishes[i]);
+                    //console.log(dishes[i]);
+                }
+            }
+            
+            
+            
             //ladda hem informationen
             this.model.getAllDishes(this.model.getSearchType(), this.model.getSearchInput())
             //gå igenom resultaten:
-            .then(data => data.results.forEach(function(dish) {
-                loading_gif.style.display = "none";
-                new dishView(dishes, model, dish);
-                console.log(dish);
-            }))
+            .then(data => loop(this, this.model, data.results))
             .catch(
             //visa felmeddelande: "server error, please try aggain shortly".
             )

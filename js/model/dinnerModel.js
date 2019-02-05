@@ -2,9 +2,16 @@
 var DinnerModel = function() {
     //URLS
     var getDishes = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
-    var getDish = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/menuItems/";
+    var getDish = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/menuItems/{id}";
     var getRecipe = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/{id}/information";
     var api_key = "3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767";
+    
+    const API_KEY_HEADERS = {
+              headers: {
+                  'X-Mashape-Key' : api_key,
+                  'Accept' : "application/json"
+              }
+        };
     
     
     var observers = [];
@@ -145,45 +152,37 @@ var DinnerModel = function() {
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
+        //skapa parametrarna.
         var parameters = [["number", 30],["query", filter],["type", type]];
+        //fixa url med parametrarna
         var URL = appendParametersURL(getDishes, parameters);
-        
-        
-        var respons = fetch(URL, {
-              headers: {
-                  'X-Mashape-Key' : api_key,
-                  'Accept' : "application/json"
-              }
-          }).then(respons => respons.json())
+        //skicka iväg en request.
+        var respons = fetch(URL, API_KEY_HEADERS).
+        then(respons => respons.json())
         //returnera en promis som viewen sen hanterar.
         return respons;
 	}
 
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
-//	    var url = getDish + id;
-//        return fetch(url)
-//        .then(respons => respons.json());
-//        
-        for(key in dishes){
-			if(dishes[key].id == id) {
-				return dishes[key];
-			}
-		}
+	    var url = getRecipe.replace("{id}", id);
+        return fetch(url, API_KEY_HEADERS)
+        .then(respons => respons.json());
+        
+//        for(key in dishes){
+//			if(dishes[key].id == id) {
+//				return dishes[key];
+//			}
+//		}
 	}
     
     
-    //function that returns a dish of specific ID
-	this.getDish2 = function (id) {
-        var url = getRecipe.replace("{id}", id);
-        return fetch(url , {
-              headers: {
-                  'X-Mashape-Key' : api_key,
-                  'Accept' : "application/json"
-              }
-        })
-        .then(respons => respons.json())
-	}
+//    //function that returns a dish of specific ID
+//	this.getDish2 = function (id) {
+//        var url = getRecipe.replace("{id}", id);
+//        return fetch(url , API_KEY_HEADERS)
+//        .then(respons => respons.json())
+//	}
     
     /**
     Append the parameters in the list to the URL correctly...
