@@ -79,8 +79,8 @@ class sideMenuView{
                 var dish = this.model.getDishPrice(fullMenu[i]);
                 var title = fullMenu[i].title;
                 //Make sure the title is not too long
-                if(title.length > 6){
-                  title = title.substr(0,7);
+                if(title.length > 10){
+                  title = title.substr(0,11);
                   title += "...";
                 }
                 dishes += "<h3 class=\"picked-dish\" style=\"float: left\">"+"<p class=\"alignleft\">"+title+"</p><p class=\"alignright\">"+dish+"</p></h3>";

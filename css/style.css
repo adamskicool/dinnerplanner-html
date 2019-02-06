@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe');
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
 body {
   padding: 0px;
   margin: 0px;
-  font-family: 'ZCOOL KuaiLe', cursive;
+  font-family: 'Merriweather', serif;
 }
 /**
 Styla Titel segmentet, som är samma för alla sidor.
@@ -11,13 +12,14 @@ Styla Titel segmentet, som är samma för alla sidor.
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(129, 177, 178);
+  background-color: rgba(25, 64, 94);
   height: 100px;
   width: auto;
 }
 .title > h1{
+  font-size: 50px;
   font-family: 'ZCOOL KuaiLe', cursive;
-  color: rgba(30,53,77);
+  color: white;
 }
 
 /**
@@ -39,12 +41,12 @@ Styla lorem, endast på home.html
 Styla diverse knappar och input
 **/
 .button, input, select {
-  background-color: rgba(198,224,118);
+  background-color: rgba(66, 174, 163);
   height: 40px;
   width: 180px;
-  font-family: 'ZCOOL KuaiLe', cursive;
+  font-family: 'Merriweather', serif;
   font-size: 16px;
-  border: 3px solid rgba(30,53,77);
+  border: 2px solid rgba(30,53,77);
   box-shadow: 2px 2px rgba(30,53,77);
 }
 input[type="number"] {
@@ -52,7 +54,7 @@ input[type="number"] {
   width: 60px;
 }
 .button:hover, input:hover, select:hover{
-  background-color: rgba(147,195,113);
+  background-color: rgba(66, 174, 163, 0.9);
   transition: background-color 300ms linear;
 }
 
@@ -91,7 +93,7 @@ Styla de olika grid-areas för select-dish-grid.
   display: flex;
   border: 3px solid rgba(30,53,77);
   padding: 10px;
-  font-family: 'ZCOOL KuaiLe', cursive;
+  font-family: 'Merriweather', serif;
 }
 /**
 Styla my dinner delen av gridden.
@@ -105,6 +107,7 @@ Styla my dinner delen av gridden.
   height: 20px;
 }
 .picked-dish {
+    font-size: 14px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -161,9 +164,10 @@ Styla dishes delen av gridden.
 }
 .dish, .dish-overview {
   margin: 10px;
-  height: 100px;
-  width: 100px;
-  border: 3px solid rgba(30,53,77);
+  height: 150px;
+  width: 150px;
+  border: 2px solid rgba(30,53,77);
+  border-radius: 5px;
 }
 
 
