@@ -2,10 +2,11 @@ class dishMoreInfoView {
  		constructor (container, model) {
 			this.model = model;
 			this.container = container;
-//			var dish = model.getDish(model.getCurrentDish());
+            //leta upp de olika containers i DOM.
 			this.dishInfo = container.find("#dish-info");
 			this.ingredients = container.find("#dish-ingredients");
 			this.preparation = container.find("#dish-preparation");
+            //skapa knapparna för viewn.
 			this.backToSearch = document.createElement("button");
 			this.backToSearch.classList.add("button");
 			this.backToSearch.innerHTML = "Back to search";
@@ -14,8 +15,9 @@ class dishMoreInfoView {
 			this.addToMenu.classList.add("button");
 			this.addToMenu.innerHTML = "Add to menu";
 			this.addToMenu.id = "addToMenu";
+            //lägg till viewn som observer.
 			model.addObserver(this);
-			//this.update(model,"activeDish");
+            //lägg till controller för viewn.
 			dishMoreInfoViewController(this, model);
 	}
 
@@ -32,9 +34,9 @@ class dishMoreInfoView {
                 //skapa en sträng med information om receptet:
                 //1. Bild
                 //2. Receptets typer (t.ex. main course, dessert)
-                var s = "<h3>" + dish.title +"</h3><img src=\"" + dish.image+"\">";
+                var s = "<h3>" + dish.title + "</h3><img src=\"" + dish.image + "\">";
                 for(var i = 0; i < dish.dishTypes.length; i++) {
-                    s += "<p>" +dish.dishTypes[i] +"</p>";
+                    s += "<p>" +dish.dishTypes[i] + "</p>";
                 }
                 view.dishInfo.prepend(s);
                 //lägg till knappen.
@@ -43,17 +45,23 @@ class dishMoreInfoView {
                 //gå igenom ingredienserna och lägg till dessa i ingrediens div:en.
                 var ingredients = dish.extendedIngredients;
                 for(var i=0; i < ingredients.length; i++) {
-                    view.ingredients.prepend("<p>" + ingredients[i].measures.metric.amount + " "+ ingredients[i].measures.metric.unitShort+ " "+ingredients[i].name + "</p>");
+                    view.ingredients.prepend("<p>" + ingredients[i].measures.metric.amount + " " + ingredients[i].measures.metric.unitShort+ " " + ingredients[i].name + "</p>");
                 }
-                view.ingredients.prepend("<h3>Ingredients for " +numberOfGuests+ " people:</h3>");
+                view.ingredients.prepend("<h3>Ingredients for " + numberOfGuests + " people:</h3>");
                 //lägg till knappen för att lägga till receptet på menyn.
                 view.ingredients.append(view.addToMenu);
                 
                 //lägg till instruktionerna för hur man lagar receptet.
-                var instructions = dish.analyzedInstructions[0].steps;
-                view.preparation.append("<h3>Preparation</h3>");
-                for(var i = 0; i < instructions.length; i++) {
-                    view.preparation.append("<p>" + instructions[i].number + ". " +instructions[i].step+"</p>");   
+                //Men endast om det finns instruktioner tillgängliga.
+                if(dish.analyzedInstructions.length > 0) {
+                    var instructions = dish.analyzedInstructions[0].steps;
+                    view.preparation.append("<h3>Preparation</h3>");
+                    for(var i = 0; i < instructions.length; i++) {
+                        view.preparation.append("<p>" + instructions[i].number + ". " +instructions[i].step + "</p>");   
+                    }   
+                } else {
+                    //annars skriv ut meddellande att det inte finns några preparation tillgängliga.
+                    view.preparation.append("<h3>No Preparation Available</h3>");
                 }
             }
             
