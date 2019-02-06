@@ -1,11 +1,11 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
-    //URLS
+    ///URLs for getting resources från Spoonacular API.
     var getDishes = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
     var getDish = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/menuItems/{id}";
     var getRecipe = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/{id}/information";
     var api_key = "3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767";
-
+    //json object that is passed as an argument when using fetch with the Spoonacular API.
     const API_KEY_HEADERS = {
               headers: {
                   'X-Mashape-Key' : api_key,
@@ -13,13 +13,15 @@ var DinnerModel = function() {
               }
         };
 
-
+    //list of observers.
     var observers = [];
-
+    
+    //add an observer to the model.
     this.addObserver = function(observer) {
         observers.push(observer);
     }
-
+    
+    //Notify the observers that something in the model has changed (specfied in changeDetails).
     var notifyObservers = function(changeDetails) {
         for(var i=0; i<observers.length; i++) {
             observers[i].update(this, changeDetails);
@@ -28,53 +30,53 @@ var DinnerModel = function() {
 
 
 
-	//TODO Lab 1 implement the data structure that will hold number of guest
+	//Keep track of the number of guests.
     var numberOfGuests = 1;
-	// and selected dishes for the dinner menu
+	//Keep track of the dishes that the user has selected.
     var selectedDishes = [];
 
 
-    //for the search bar:
+    //Starting values for the searh bar.
     var searchType = "Main Course";
     var searchInput = "";
     var currentDish = "1";
 
-    //KLAR
+    //Set the number of guests to the parameter num.
 	this.setNumberOfGuests = function(num) {
 		numberOfGuests = num;
         notifyObservers("guests");
 	}
 
 
-    //KLAR
+    //Get the number of guests.
 	this.getNumberOfGuests = function() {
         return numberOfGuests;
 	}
 
-    //KLAR
+    //Set the search bar input and notify the observers that it has changed.
     this.setSearchbarInput = function(type, text) {
         searchType = type;
         searchInput = text;
         notifyObservers("searchbar");
     }
 
-  //KLAR
+  //Get the search input (textfield) from search bar.
   this.getSearchInput = function() {
     return searchInput;
   }
 
-  //KLAR
+  //Get the search type (drop down meny) from the search bar.
   this.getSearchType = function() {
     return searchType;
   }
 
-  //KLAR
+  //Set the current dish ID to the parameter id and notify the observers that it has changed.
   this.setCurrentDish = function(id) {
     currentDish = id;
     notifyObservers("activeDish");
   }
 
-  //KLAR
+  ///Get the ID of the current dish.
   this.getCurrentDish = function() {
     return currentDish;
   }
@@ -90,8 +92,7 @@ var DinnerModel = function() {
 //        });
 //	}
 
-    //KLAR
-	//Returns all the dishes on the menu.
+    //Returns all the dishes on the menu (the selected dishes that the user has picked).
 	this.getFullMenu = function() {
         return selectedDishes;
 	}
@@ -122,7 +123,7 @@ var DinnerModel = function() {
         return (dish.pricePerServing * this.getNumberOfGuests()).toFixed(2);
       }
 
-	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
+	//Returns the total price of the menu (all the prices of the dishes multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
 		var price = 0;
         selectedDishes.forEach(function(dish) {
@@ -131,8 +132,9 @@ var DinnerModel = function() {
         return price.toFixed(2);
 	}
 
-	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
-	//it is removed from the menu and the new one added.
+	//Adds the passed dish to the menu.
+    //NOTE: removed functionality from lab 2:
+    //now one can add multiple dishes of the same type, as stated in the lab-specification for lab 3.
 	this.addDishToMenu = function(id) {
         var newDish_promise = this.getDish(id);
         newDish_promise.then(dish => addDish(dish))
@@ -186,15 +188,8 @@ var DinnerModel = function() {
 	}
 
 
-//    //function that returns a dish of specific ID
-//	this.getDish2 = function (id) {
-//        var url = getRecipe.replace("{id}", id);
-//        return fetch(url , API_KEY_HEADERS)
-//        .then(respons => respons.json())
-//	}
-
     /**
-    Append the parameters in the list to the URL correctly...
+    This function appends the specified parameters in the list 'parameters' to the URL.
     **/
     function appendParametersURL(URL, parameters) {
           //parameters ≈ {[number, 3], [query, "ice"]}
