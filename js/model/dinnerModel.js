@@ -60,26 +60,26 @@ var DinnerModel = function() {
         notifyObservers("searchbar");
     }
 
-  //Get the search input (textfield) from search bar.
-  this.getSearchInput = function() {
-    return searchInput;
-  }
+    //Get the search input (textfield) from search bar.
+    this.getSearchInput = function() {
+        return searchInput;
+    }
 
-  //Get the search type (drop down meny) from the search bar.
-  this.getSearchType = function() {
-    return searchType;
-  }
+    //Get the search type (drop down meny) from the search bar.
+    this.getSearchType = function() {
+        return searchType;
+    }
 
-  //Set the current dish ID to the parameter id and notify the observers that it has changed.
-  this.setCurrentDish = function(id) {
-    currentDish = id;
-    notifyObservers("activeDish");
-  }
+    //Set the current dish ID to the parameter id and notify the observers that it has changed.
+    this.setCurrentDish = function(id) {
+        currentDish = id;
+        notifyObservers("activeDish");
+    }
 
-  ///Get the ID of the current dish.
-  this.getCurrentDish = function() {
-    return currentDish;
-  }
+    ///Get the ID of the current dish.
+    this.getCurrentDish = function() {
+        return currentDish;
+    }
 
 //	//Returns the dish that is on the menu for selected type
 //	this.getSelectedDish = function(type) {
