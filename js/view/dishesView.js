@@ -3,9 +3,6 @@ class dishesView {
 		this.container = container;
         this.model = model;
 		this.dishes = container.find("#dishes");
-//		model.getEntireMenu().forEach(function(dish) {
-//            new dishView(dishes, model, dish);
-//        });
 		model.addObserver(this);
 	}
     
@@ -16,8 +13,7 @@ class dishesView {
             var loading_gif = document.getElementById("loading");
             //vissa loading-gif ...
             loading_gif.style.display = "flex";
-            
-            
+                   
             //gå igenom alla alla dishes, lägg till ny dish-view.
             var loop = function(dishesView, model, dishes) {
                 //console.log(model);
@@ -27,8 +23,6 @@ class dishesView {
                     //console.log(dishes[i]);
                 }
             }
-            
-            
             
             //ladda hem informationen
             this.model.getAllDishes(this.model.getSearchType(), this.model.getSearchInput())
@@ -41,15 +35,8 @@ class dishesView {
             
             var errorMessage = function() {
                 loading_gif.style.display = "none";
-                alert("oops something went wrong, please try again!");
+                alert("Oops something went wrong, please try again!");
             }
-//            var dishes = this.model.getAllDishes(this.model.getSearchType(), this.model.getSearchInput());
-//            console.log(dishes);
-//			this.dishes.html("");
-//			for(var i = 0; i < dishes.length; i++) {
-//					new dishView(this.dishes, this.model, dishes[i]);
-//			}
 		}
 	}
-    
 }

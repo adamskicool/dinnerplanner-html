@@ -23,13 +23,19 @@ class dishMoreInfoView {
 
 	update(model, details){
 		if(details.includes("activeDish")){
-			//clear the previous information
+			var loading_gif = document.getElementById("loading");
+            //vissa loading-gif ...
+            loading_gif.style.display = "flex";
+            
+            //clear the previous information
             this.dishInfo.html("");
 			this.ingredients.html("");
 			this.preparation.html("");
 			
             //detta är vad vi vill göra med datan från promisen.
             var dishInfo = function(view, model, dish) {
+                //sluta visa loading-gif
+                loading_gif.style.display = "none";
                 var numberOfGuests = model.getNumberOfGuests();
                 //skapa en sträng med information om receptet:
                 //1. Bild
@@ -65,6 +71,7 @@ class dishMoreInfoView {
                 }
             }
             
+            //innan vi gör detta, visa loading gif.
             //dish är en promise.
             var data = this.model.getDish(this.model.getCurrentDish());
             data.then(dish => dishInfo(this, this.model, dish))
