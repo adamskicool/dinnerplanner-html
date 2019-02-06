@@ -105,6 +105,7 @@ Styla my dinner delen av gridden.
 }
 #column-names {
   height: 20px;
+    margin-bottom: 5px;
 }
 .picked-dish {
     font-size: 14px;
@@ -115,8 +116,8 @@ Styla my dinner delen av gridden.
     width: 90%;
     padding:5px;
     margin-top: 10px;
-    background-color: rgba(86, 150, 152);
-    border: 3px solid rgba(30,53,77);
+    background-color: rgba(236, 200, 91);
+    border: 2px solid rgba(30,53,77);
     }
     .alignleft {
       width:50%;
@@ -229,7 +230,8 @@ Grid och style för dinnerprintout.html
   display: grid;
   grid-template-areas:
     'f g'
-    'e g';
+    'e g'
+    '- g';
   grid-template-rows: auto;
   grid-template-columns: 30% 70%;
 }
@@ -259,6 +261,9 @@ Grid och style för dinnerprintout.html
   display: flex;
   flex-direction: column;
   padding: 20px;
+}
+.print-out-preparation > p {
+    margin: 0px;
 }
 
 /**
