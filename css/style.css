@@ -229,20 +229,23 @@ Grid och style för dinnerprintout.html
 .dish-print-out-grid {
   display: grid;
   grid-template-areas:
-    'e f g';
+    'f g'
+    'e g';
   grid-template-rows: auto;
-  grid-template-columns: 20% 30% 50%;
+  grid-template-columns: 30% 70%;
 }
 .print-out-image {
   grid-area: e;
   display: flex;
   justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 20px;
 }
 .print-out-image > img {
+  width: 100%;
   border: 3px solid rgba(30,53,77);
-  border-radius: 10000px;
+  border-radius: 30px;
 }
 .print-out-description {
   grid-area: f;
