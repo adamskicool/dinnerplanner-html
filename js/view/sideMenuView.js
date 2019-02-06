@@ -72,6 +72,7 @@ class sideMenuView{
         }
 
         update(model, details) {
+          //Update the side menu and total price if number of guests changes or added new dish. 
 					if(details.includes("guests") || details.includes("addedDish")) {
 						var dishes = "";
             var fullMenu = this.model.getFullMenu();

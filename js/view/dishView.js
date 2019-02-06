@@ -1,9 +1,9 @@
 class dishView {
   constructor(container, model, dish) {
-//    this.model = model.model;
-    //console.log(model);
+    //image url of this dish
     var url =  'https://spoonacular.com/recipeImages/'+dish.id+'-240x150.jpg';
     this.model = model;
+    //Creates an menu item with dish image as background to the element
     this.id = dish.id;
     this.dishImage = document.createElement("div");
     this.dishImage.classList.add("dish");

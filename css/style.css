@@ -170,7 +170,6 @@ Styla dishes delen av gridden.
   border-radius: 5px;
 }
 
-
 #collapse-button {
   display: none;
 }
@@ -246,6 +245,8 @@ Grid och style för dinnerprintout.html
   width: 100%;
   border: 3px solid rgba(30,53,77);
   border-radius: 30px;
+  max-width: 200px;
+  max-height: 200px;
 }
 .print-out-description {
   grid-area: f;
