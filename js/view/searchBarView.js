@@ -19,14 +19,30 @@ class searchBarView {
 			this.option2 = document.createElement("option");
 			this.option2.innerHTML = "Main Course";
 			this.option2.id = "main dish";
-			//Option 3: Dessert
+			//Option 3: Side dish
+			this.option3 = document.createElement("option");
+			this.option3.innerHTML = "Side Dish";
+			this.option3.id = "side dish";
+			//Option 4: Dessert
 			this.option4 = document.createElement("option");
 			this.option4.innerHTML = "Dessert";
 			this.option4.id = "dessert";
-			//Option 4: Appetizer
+			//Option 5: Appetizer
 			this.option5 = document.createElement("option");
 			this.option5.innerHTML = "Appetizer";
 			this.option5.id = "starter";
+			//Option 6: Lunch
+			this.option6 = document.createElement("option");
+			this.option6.innerHTML = "Lunch";
+			this.option6.id = "lunch";
+			//Option 7: Dinner
+			this.option7 = document.createElement("option");
+			this.option7.innerHTML = "Dinner";
+			this.option7.id = "dinner";
+			//Option 8: Breakfast
+			this.option8 = document.createElement("option");
+			this.option8.innerHTML = "Breakfast";
+			this.option8.id = "breakfast";
 			//Search button
 			this.searchButton = document.createElement("button");
 			this.searchButton.classList.add("button");
@@ -35,8 +51,12 @@ class searchBarView {
 			//Append the options to the selector
 			this.dropDownSelector.appendChild(this.option1);
 			this.dropDownSelector.appendChild(this.option2);
+			this.dropDownSelector.appendChild(this.option3);
 			this.dropDownSelector.appendChild(this.option4);
 			this.dropDownSelector.appendChild(this.option5);
+			this.dropDownSelector.appendChild(this.option8);
+			this.dropDownSelector.appendChild(this.option6);
+			this.dropDownSelector.appendChild(this.option7);
 			//Choose what to show depends if you already selected a dish or not.
 			if(model.getFullMenu().length >0){
 				this.message.innerHTML = "Select Another";
@@ -56,7 +76,7 @@ class searchBarView {
 		}
 
 		update(model, details){
-						//Update the text if added new dish. 
+						//Update the text if added new dish.
             if(detail.includes("addedDish")) {
                 if(model.getFullMenu().length > 0){
                     this.message.innerHTML = "Select Another";

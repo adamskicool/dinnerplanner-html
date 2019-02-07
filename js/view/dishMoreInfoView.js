@@ -26,15 +26,16 @@ class dishMoreInfoView {
 			var loading_gif = document.getElementById("loading");
             //vissa loading-gif ...
             loading_gif.style.display = "flex";
-            
+
             //clear the previous information
             this.dishInfo.html("");
 			this.ingredients.html("");
 			this.preparation.html("");
-			
+
             //detta är vad vi vill göra med datan från promisen.
             var dishInfo = function(view, model, dish) {
                 //sluta visa loading-gif
+                console.log(dish.dishTypes);
                 loading_gif.style.display = "none";
                 var numberOfGuests = model.getNumberOfGuests();
                 //skapa en sträng med information om receptet:
@@ -47,7 +48,7 @@ class dishMoreInfoView {
                 view.dishInfo.prepend(s);
                 //lägg till knappen.
                 view.dishInfo.append(view.backToSearch);
-                
+
                 //gå igenom ingredienserna och lägg till dessa i ingrediens div:en.
                 var ingredients = dish.extendedIngredients;
                 for(var i=0; i < ingredients.length; i++) {
@@ -56,21 +57,21 @@ class dishMoreInfoView {
                 view.ingredients.prepend("<h3>Ingredients for " + numberOfGuests + " people:</h3>");
                 //lägg till knappen för att lägga till receptet på menyn.
                 view.ingredients.append(view.addToMenu);
-                
+
                 //lägg till instruktionerna för hur man lagar receptet.
                 //Men endast om det finns instruktioner tillgängliga.
                 if(dish.analyzedInstructions.length > 0) {
                     var instructions = dish.analyzedInstructions[0].steps;
                     view.preparation.append("<h3>Preparation</h3>");
                     for(var i = 0; i < instructions.length; i++) {
-                        view.preparation.append("<p>" + instructions[i].number + ". " +instructions[i].step + "</p>");   
-                    }   
+                        view.preparation.append("<p>" + instructions[i].number + ". " +instructions[i].step + "</p>");
+                    }
                 } else {
                     //annars skriv ut meddellande att det inte finns några preparation tillgängliga.
                     view.preparation.append("<h3>No Preparation Available</h3>");
                 }
             }
-            
+
             //innan vi gör detta, visa loading gif.
             //dish är en promise.
             var data = this.model.getDish(this.model.getCurrentDish());
