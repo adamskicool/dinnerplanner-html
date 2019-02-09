@@ -43,6 +43,18 @@ class searchBarView {
 			this.option8 = document.createElement("option");
 			this.option8.innerHTML = "Breakfast";
 			this.option8.id = "breakfast";
+			//Option 9: Sauce
+			this.option9 = document.createElement("option");
+			this.option9.innerHTML = "Sauce";
+			this.option9.id = "sauce";
+			//Option 10: Salad
+			this.option10 = document.createElement("option");
+			this.option10.innerHTML = "Salad";
+			this.option10.id = "salad";
+			//Option 11: Drink
+			this.option11 = document.createElement("option");
+			this.option11.innerHTML = "Drink";
+			this.option11.id = "drink";
 			//Search button
 			this.searchButton = document.createElement("button");
 			this.searchButton.classList.add("button");
@@ -57,6 +69,9 @@ class searchBarView {
 			this.dropDownSelector.appendChild(this.option8);
 			this.dropDownSelector.appendChild(this.option6);
 			this.dropDownSelector.appendChild(this.option7);
+			this.dropDownSelector.appendChild(this.option9);
+			this.dropDownSelector.appendChild(this.option10);
+			this.dropDownSelector.appendChild(this.option11);
 			//Choose what to show depends if you already selected a dish or not.
 			if(model.getFullMenu().length >0){
 				this.message.innerHTML = "Select Another";
